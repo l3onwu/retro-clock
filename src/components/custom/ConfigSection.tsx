@@ -37,7 +37,7 @@ const ClockConfigWrapper = ({
 }) => {
   return (
     <Flex direction="column" mb={4} width="100%">
-      <Text fontSize="lg" fontWeight="bold">
+      <Text fontSize="xl" fontWeight="bold" textTransform="uppercase">
         {configTitle}
       </Text>
       <Flex mt={2} direction="column" width="100%">
