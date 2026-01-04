@@ -1,4 +1,4 @@
-import ConfigOptionWrapper from "../ConfigOptionWrapper";
+import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
 
 export default function DialDesignConfig() {
   return (
