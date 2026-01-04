@@ -1,7 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import BodyConfig from "./clockConfig/BodyConfig";
-import DialConfig from "./clockConfig/DialConfig";
-import HandsConfig from "./clockConfig/HandsConfig";
+import ConfigSection from "./ConfigSection";
 
 export default function BodyRight() {
   return (
@@ -12,9 +10,7 @@ export default function BodyRight() {
       width="100%"
       p="10px"
     >
-      <BodyConfig />
-      <DialConfig />
-      <HandsConfig />
+      <ConfigSection />
     </Flex>
   );
 }
