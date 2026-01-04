@@ -36,8 +36,19 @@ const ClockConfigWrapper = ({
   children?: ReactNode;
 }) => {
   return (
-    <Flex direction="column" mb={4} width="100%">
-      <Text fontSize="xl" fontWeight="bold" textTransform="uppercase">
+    <Flex
+      direction="column"
+      mb={4}
+      width="100%"
+      borderBottom="0.5px solid #d4d4d4ff"
+      pb={4}
+    >
+      <Text
+        // fontFamily="Mogra"
+        fontSize="xl"
+        fontWeight="600"
+        // textTransform="uppercase"
+      >
         {configTitle}
       </Text>
       <Flex mt={2} direction="column" width="100%">

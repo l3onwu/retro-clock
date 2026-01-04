@@ -11,7 +11,12 @@ export default function TopBar() {
 
 const Logo = () => {
   return (
-    <Text fontSize="2xl" fontWeight={"bold"} textTransform={"uppercase"}>
+    <Text
+      fontFamily={"ranchers"}
+      fontSize="4xl"
+      fontWeight={"400"}
+      textTransform={"uppercase"}
+    >
       retroclock.io
     </Text>
   );
