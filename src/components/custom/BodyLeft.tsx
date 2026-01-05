@@ -1,4 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
+import ClockModelView from "./ClockModelView";
 
 export default function BodyLeft() {
   return (
@@ -12,9 +13,7 @@ export default function BodyLeft() {
 const ModelViewer = () => {
   return (
     <Box height="75%" width="100%" pb="20px">
-      <Box height="90%" width="100%" bg="gray.200" borderRadius={"20px"}>
-        3D Model Viewer Placeholder
-      </Box>
+      <ClockModelView />
     </Box>
   );
 };

@@ -1,13 +1,10 @@
 import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
-import { Flex, parseColor } from "@chakra-ui/react";
-import { useState } from "react";
+import { Flex } from "@chakra-ui/react";
 import ConfigColorPicker from "../_shared/ConfigColorPicker";
-import initialStates from "@/lib/initialStates";
+import { useAppContext } from "@/lib/AppContext";
 
 export default function BodyColorConfig() {
-  const [color, setColor] = useState(
-    parseColor(initialStates.initialBodyColor)
-  );
+  const { bodyColor: color, setBodyColor: setColor } = useAppContext();
 
   return (
     <Flex>
