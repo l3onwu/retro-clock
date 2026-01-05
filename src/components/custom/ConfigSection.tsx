@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { Flex, Text } from "@chakra-ui/react";
-import BodyBaseConfig from "./clockConfig/body/BodyBaseConfig";
 import BodyColorConfig from "./clockConfig/body/BodyColorConfig";
 import DialColorConfig from "./clockConfig/dial/DialColorConfig";
 import DialDesignConfig from "./clockConfig/dial/DialDesignConfig";
@@ -12,7 +11,7 @@ export default function ConfigSection() {
     <>
       <ClockConfigWrapper configTitle="Body">
         <BodyColorConfig />
-        <BodyBaseConfig />
+        {/* <BodyBaseConfig /> */}
       </ClockConfigWrapper>
 
       <ClockConfigWrapper configTitle="Dial">
