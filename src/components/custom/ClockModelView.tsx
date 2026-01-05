@@ -6,21 +6,43 @@ import { useEffect } from "react";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 
 export default function ClockModelView() {
-  const { bodyColor, dialColor, handsColor, dialDesignImage } = useAppContext();
+  const {
+    bodyColor,
+    dialColor,
+    handsColor,
+    dialDesignImage,
+    handsDesignImage,
+  } = useAppContext();
   const modelClockBody = useLoader(STLLoader, "/public/body_1.stl");
   const modelClockBase = useLoader(STLLoader, "/public/base_1.stl");
   const modelDialHours = useLoader(STLLoader, "/public/dial_hours_1.stl");
   const modelDialSmile = useLoader(STLLoader, "/public/dial_smile_1.stl");
-  const modelHandsHours = useLoader(STLLoader, "/public/hour_hand_1.stl");
-  const modelHandsMinutes = useLoader(STLLoader, "/public/minute_hand_1.stl");
+  const modelHandsHoursChopsticks = useLoader(
+    STLLoader,
+    "/public/hour_hand_chopsticks_1.stl"
+  );
+  const modelHandsMinutesChopsticks = useLoader(
+    STLLoader,
+    "/public/minute_hand_chopsticks_1.stl"
+  );
+  const modelHandsHoursBold = useLoader(
+    STLLoader,
+    "/public/hour_hand_bold_1.stl"
+  );
+  const modelHandsMinutesBold = useLoader(
+    STLLoader,
+    "/public/minute_hand_bold_1.stl"
+  );
 
   // Center the geometry at origin
   modelClockBody.center();
   modelClockBase.center();
   modelDialHours.center();
   modelDialSmile.center();
-  modelHandsHours.center();
-  modelHandsMinutes.center();
+  modelHandsHoursChopsticks.center();
+  modelHandsMinutesChopsticks.center();
+  modelHandsHoursBold.center();
+  modelHandsMinutesBold.center();
 
   const selectDialDesign = () => {
     switch (dialDesignImage.name) {
@@ -33,7 +55,32 @@ export default function ClockModelView() {
     }
   };
 
+  const selectHandsHoursDesign = () => {
+    switch (handsDesignImage.name) {
+      case "Chopsticks":
+        return modelHandsHoursChopsticks;
+      case "Bold":
+        return modelHandsHoursBold;
+      default:
+        return modelHandsHoursChopsticks;
+    }
+  };
+
+  const selectHandsMinutesDesign = () => {
+    switch (handsDesignImage.name) {
+      case "Chopsticks":
+        return modelHandsMinutesChopsticks;
+      case "Bold":
+        return modelHandsMinutesBold;
+      default:
+        return modelHandsMinutesChopsticks;
+    }
+  };
+
   const modelDial = selectDialDesign();
+  const modelHandsHours = selectHandsHoursDesign();
+  const modelHandsMinutes = selectHandsMinutesDesign();
+  console.log(modelHandsHours);
 
   return (
     <Box height="100%" width="100%">

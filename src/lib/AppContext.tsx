@@ -8,14 +8,19 @@ import initialStates from "./initialStates";
 import { parseColor, type Color } from "@chakra-ui/react";
 
 interface AppContextType {
+  // Body options
   bodyColor: Color;
   setBodyColor: React.Dispatch<React.SetStateAction<Color>>;
+  // Dial options
   dialColor: Color;
   setDialColor: React.Dispatch<React.SetStateAction<Color>>;
-  handsColor: Color;
-  setHandsColor: React.Dispatch<React.SetStateAction<Color>>;
   dialDesignImage: DialDesignImage;
   setDialDesignImage: React.Dispatch<React.SetStateAction<DialDesignImage>>;
+  // Hands options
+  handsColor: Color;
+  setHandsColor: React.Dispatch<React.SetStateAction<Color>>;
+  handsDesignImage: DialDesignImage;
+  setHandsDesignImage: React.Dispatch<React.SetStateAction<DialDesignImage>>;
 }
 
 interface DialDesignImage {
@@ -44,6 +49,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [handsColor, setHandsColor] = useState(
     parseColor(initialStates.initialHandsColor)
   );
+  const [handsDesignImage, setHandsDesignImage] = useState(
+    initialStates.handsDesignsImages[0]
+  );
 
   const value: AppContextType = {
     bodyColor,
@@ -54,6 +62,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setHandsColor,
     dialDesignImage,
     setDialDesignImage,
+    handsDesignImage,
+    setHandsDesignImage,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
