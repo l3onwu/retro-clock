@@ -14,17 +14,33 @@ interface AppContextType {
   setDialColor: React.Dispatch<React.SetStateAction<Color>>;
   handsColor: Color;
   setHandsColor: React.Dispatch<React.SetStateAction<Color>>;
+  dialDesignImage: DialDesignImage;
+  setDialDesignImage: React.Dispatch<React.SetStateAction<DialDesignImage>>;
+}
+
+interface DialDesignImage {
+  id: number;
+  name: string;
+  image: string;
 }
 
 const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
+  // Body options
   const [bodyColor, setBodyColor] = useState(
     parseColor(initialStates.initialBodyColor)
   );
+
+  // Dial options
   const [dialColor, setDialColor] = useState(
     parseColor(initialStates.initialDialColor)
   );
+  const [dialDesignImage, setDialDesignImage] = useState(
+    initialStates.dialDesignsImages[0]
+  );
+
+  // Hands options
   const [handsColor, setHandsColor] = useState(
     parseColor(initialStates.initialHandsColor)
   );
@@ -36,6 +52,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setDialColor,
     handsColor,
     setHandsColor,
+    dialDesignImage,
+    setDialDesignImage,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

@@ -5,18 +5,8 @@ import { Canvas, useLoader, useThree } from "@react-three/fiber";
 import { useEffect } from "react";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 
-function CameraSetup() {
-  const { camera } = useThree();
-
-  useEffect(() => {
-    camera.position.set(0, -8, 3); // position the camera
-    camera.lookAt(0, 0, 0); // point it at the scene center
-  }, [camera]);
-
-  return null;
-}
 export default function ClockModelView() {
-  const { bodyColor, dialColor, handsColor } = useAppContext();
+  const { bodyColor, dialColor, handsColor, dialDesignImage } = useAppContext();
   const modelClockBody = useLoader(STLLoader, "/public/body_1.stl");
   const modelClockBase = useLoader(STLLoader, "/public/base_1.stl");
   const modelDialHours = useLoader(STLLoader, "/public/dial_hours_1.stl");
@@ -32,6 +22,19 @@ export default function ClockModelView() {
   modelHandsHours.center();
   modelHandsMinutes.center();
 
+  const selectDialDesign = () => {
+    switch (dialDesignImage.name) {
+      case "Full Markers":
+        return modelDialHours;
+      case "Smile":
+        return modelDialSmile;
+      default:
+        return modelDialHours;
+    }
+  };
+
+  const modelDial = selectDialDesign();
+
   return (
     <Box height="100%" width="100%">
       <Canvas camera={{ fov: 9 }}>
@@ -45,15 +48,15 @@ export default function ClockModelView() {
           <meshStandardMaterial color={bodyColor.toString("hsl")} />
         </mesh>
         {/* Clock base */}
-        <mesh geometry={modelClockBase} scale={0.01} position={[0, 0, -0.4]}>
+        <mesh
+          geometry={modelClockBase}
+          scale={0.01}
+          position={[0, -0.02, -0.4]}
+        >
           <meshStandardMaterial color={bodyColor.toString("hsl")} />
         </mesh>
         {/* Dial hours */}
-        <mesh
-          geometry={modelDialHours}
-          scale={0.01}
-          position={[0, -0.05, 0.04]}
-        >
+        <mesh geometry={modelDial} scale={0.01} position={[0, -0.05, 0.04]}>
           <meshBasicMaterial color={dialColor.toString("hsl")} />
         </mesh>
         {/* Hands hours */}
@@ -77,3 +80,14 @@ export default function ClockModelView() {
     </Box>
   );
 }
+
+const CameraSetup = () => {
+  const { camera } = useThree();
+
+  useEffect(() => {
+    camera.position.set(0, -8, 3); // position the camera
+    camera.lookAt(0, 0, 0); // point it at the scene center
+  }, [camera]);
+
+  return null;
+};

@@ -3,13 +3,7 @@ import ConfigSection from "./ConfigSection";
 
 export default function BodyRight() {
   return (
-    <Flex
-      direction="column"
-      overflow="scroll"
-      height="100%"
-      width="100%"
-      p="10px"
-    >
+    <Flex direction="column" overflow="scroll" width="100%">
       <ConfigSection />
     </Flex>
   );
