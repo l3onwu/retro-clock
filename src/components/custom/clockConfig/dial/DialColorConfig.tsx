@@ -1,13 +1,10 @@
-import { useState } from "react";
-import { Flex, parseColor } from "@chakra-ui/react";
+import { Flex } from "@chakra-ui/react";
 import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
 import ConfigColorPicker from "../_shared/ConfigColorPicker";
-import initialStates from "@/lib/initialStates";
+import { useAppContext } from "@/lib/AppContext";
 
 export default function DialColorConfig() {
-  const [color, setColor] = useState(
-    parseColor(initialStates.initialDialColor)
-  );
+  const { dialColor: color, setDialColor: setColor } = useAppContext();
 
   return (
     <Flex>
