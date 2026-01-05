@@ -8,7 +8,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
-import { useAppContext } from "@/lib/AppContext";
+import { useAppContext, type DialDesignImage } from "@/lib/AppContext";
 import initialStates from "@/lib/initialStates";
 
 export default function HandsDesignConfig() {
@@ -46,7 +46,7 @@ const ConfigDialog = () => {
           </Dialog.CloseTrigger>
           {/* Header */}
           <Dialog.Header>
-            <Dialog.Title>Select a dial design</Dialog.Title>
+            <Dialog.Title>Select hands design</Dialog.Title>
           </Dialog.Header>
           {/* Body */}
           <Dialog.Body>
@@ -64,11 +64,7 @@ const ConfigDialog = () => {
               >
                 <HStack align="stretch" p={4}>
                   {initialStates.handsDesignsImages.map((design) => (
-                    <HandsDesignRadioOption
-                      key={design.name}
-                      option={design.name}
-                      image={design.image}
-                    />
+                    <HandsDesignRadioOption key={design.name} design={design} />
                   ))}
                 </HStack>
               </RadioCard.Root>
@@ -82,28 +78,21 @@ const ConfigDialog = () => {
   );
 };
 
-const HandsDesignRadioOption = ({
-  option,
-  image,
-}: {
-  option: string;
-  image: string;
-}) => {
+const HandsDesignRadioOption = ({ design }: { design: DialDesignImage }) => {
   return (
-    <RadioCard.Item key={option} value={option} width="400px">
+    <RadioCard.Item key={design.name} value={design.name} width="400px">
       <RadioCard.ItemHiddenInput />
       {/* Control */}
       <RadioCard.ItemControl>
-        <RadioCard.ItemText>{option}</RadioCard.ItemText>
+        <RadioCard.ItemText>{design.name}</RadioCard.ItemText>
         <RadioCard.ItemIndicator />
       </RadioCard.ItemControl>
-
       {/* Content */}
       <RadioCard.ItemContent p={4}>
         <RadioCard.ItemDescription>
-          Full hour markers with correct positions for all 12 hours.
+          {design.description}
         </RadioCard.ItemDescription>
-        <Image src={image} alt={option} />
+        <Image src={design.image} alt={design.name} />
       </RadioCard.ItemContent>
     </RadioCard.Item>
   );

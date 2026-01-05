@@ -23,10 +23,11 @@ interface AppContextType {
   setHandsDesignImage: React.Dispatch<React.SetStateAction<DialDesignImage>>;
 }
 
-interface DialDesignImage {
+export interface DialDesignImage {
   id: number;
   name: string;
   image: string;
+  description: string;
 }
 
 const AppContext = createContext<AppContextType | null>(null);

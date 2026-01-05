@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
 import initialStates from "@/lib/initialStates";
-import { useAppContext } from "@/lib/AppContext";
+import { useAppContext, type DialDesignImage } from "@/lib/AppContext";
 
 export default function DialDesignConfig() {
   return (
@@ -64,11 +64,7 @@ const ConfigDialog = () => {
               >
                 <HStack align="stretch" p={4}>
                   {initialStates.dialDesignsImages.map((design) => (
-                    <DialDesignRadioOption
-                      key={design.name}
-                      option={design.name}
-                      image={design.image}
-                    />
+                    <DialDesignRadioOption key={design.name} design={design} />
                   ))}
                 </HStack>
               </RadioCard.Root>
@@ -82,28 +78,22 @@ const ConfigDialog = () => {
   );
 };
 
-const DialDesignRadioOption = ({
-  option,
-  image,
-}: {
-  option: string;
-  image: string;
-}) => {
+const DialDesignRadioOption = ({ design }: { design: DialDesignImage }) => {
   return (
-    <RadioCard.Item key={option} value={option} width="400px">
+    <RadioCard.Item key={design.name} value={design.name} width="400px">
       <RadioCard.ItemHiddenInput />
       {/* Control */}
       <RadioCard.ItemControl>
-        <RadioCard.ItemText>{option}</RadioCard.ItemText>
+        <RadioCard.ItemText>{design.name}</RadioCard.ItemText>
         <RadioCard.ItemIndicator />
       </RadioCard.ItemControl>
 
       {/* Content */}
       <RadioCard.ItemContent p={4}>
         <RadioCard.ItemDescription>
-          Full hour markers with correct positions for all 12 hours.
+          {design.description}
         </RadioCard.ItemDescription>
-        <Image src={image} alt={option} />
+        <Image src={design.image} alt={design.name} />
       </RadioCard.ItemContent>
     </RadioCard.Item>
   );
