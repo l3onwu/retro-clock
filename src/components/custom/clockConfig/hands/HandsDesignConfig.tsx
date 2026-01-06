@@ -8,7 +8,7 @@ import {
   Image,
 } from "@chakra-ui/react";
 import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
-import { useAppContext, type DialDesignImage } from "@/lib/AppContext";
+import { useAppContext, type DialDesignImage } from "@/lib/contexts/AppContext";
 import initialStates from "@/lib/initialStates";
 
 export default function HandsDesignConfig() {

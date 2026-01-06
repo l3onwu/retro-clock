@@ -4,7 +4,7 @@ import React, {
   useState,
   type ReactNode,
 } from "react";
-import initialStates from "./initialStates";
+import initialStates from "../initialStates";
 import { parseColor, type Color } from "@chakra-ui/react";
 
 interface AppContextType {

@@ -1,7 +1,7 @@
 import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
 import { Flex } from "@chakra-ui/react";
 import ConfigColorPicker from "../_shared/ConfigColorPicker";
-import { useAppContext } from "@/lib/AppContext";
+import { useAppContext } from "@/lib/contexts/AppContext";
 
 export default function BodyColorConfig() {
   const { bodyColor: color, setBodyColor: setColor } = useAppContext();

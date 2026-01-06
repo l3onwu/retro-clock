@@ -1,4 +1,5 @@
-import { useAppContext } from "@/lib/AppContext";
+import { useAppContext } from "@/lib/contexts/AppContext";
+import { useR3F } from "@/lib/contexts/R3FContext";
 import { Box } from "@chakra-ui/react";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useLoader, useThree } from "@react-three/fiber";
@@ -6,6 +7,8 @@ import { useEffect } from "react";
 import { STLLoader } from "three/addons/loaders/STLLoader.js";
 
 export default function ClockModelView() {
+  const r3f = useR3F();
+
   const {
     bodyColor,
     dialColor,
@@ -13,6 +16,7 @@ export default function ClockModelView() {
     dialDesignImage,
     handsDesignImage,
   } = useAppContext();
+
   const modelClockBody = useLoader(STLLoader, "/public/body_1.stl");
   const modelClockBase = useLoader(STLLoader, "/public/base_1.stl");
   const modelDialHours = useLoader(STLLoader, "/public/dial_hours_1.stl");
@@ -80,11 +84,19 @@ export default function ClockModelView() {
   const modelDial = selectDialDesign();
   const modelHandsHours = selectHandsHoursDesign();
   const modelHandsMinutes = selectHandsMinutesDesign();
-  console.log(modelHandsHours);
 
   return (
     <Box height="100%" width="100%">
-      <Canvas camera={{ fov: 9 }}>
+      <Canvas
+        camera={{ fov: 9 }}
+        gl={{ preserveDrawingBuffer: true }}
+        onCreated={({ gl, scene, camera }) => {
+          // eslint-disable-next-line react-hooks/immutability
+          r3f.gl = gl;
+          r3f.scene = scene;
+          r3f.camera = camera;
+        }}
+      >
         <CameraSetup />
         <OrbitControls />
         <ambientLight intensity={0.5} />

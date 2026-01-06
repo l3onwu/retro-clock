@@ -1,7 +1,7 @@
 import { Flex } from "@chakra-ui/react";
 import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
 import ConfigColorPicker from "../_shared/ConfigColorPicker";
-import { useAppContext } from "@/lib/AppContext";
+import { useAppContext } from "@/lib/contexts/AppContext";
 
 export default function HandsColorConfig() {
   const { handsColor: color, setHandsColor: setColor } = useAppContext();

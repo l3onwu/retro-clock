@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import ConfigOptionWrapper from "../_shared/ConfigOptionWrapper";
 import initialStates from "@/lib/initialStates";
-import { useAppContext, type DialDesignImage } from "@/lib/AppContext";
+import { useAppContext, type DialDesignImage } from "@/lib/contexts/AppContext";
 
 export default function DialDesignConfig() {
   return (
