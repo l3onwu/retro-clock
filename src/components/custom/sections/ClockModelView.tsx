@@ -67,7 +67,7 @@ export default function ClockModelView() {
   return (
     <Box height="100%" width="100%">
       <Canvas
-        camera={{ fov: 8 }}
+        camera={{ fov: 7 }}
         gl={{ preserveDrawingBuffer: true }}
         onCreated={({ gl, scene, camera }) => {
           // eslint-disable-next-line react-hooks/immutability

@@ -75,7 +75,7 @@ export default function MoreControlsSection() {
   }
 
   return (
-    <Flex direction="column" height="25%">
+    <Flex direction="column">
       <RandomizeSection
         randomizeColors={randomizeColors}
         randomizeDesigns={randomizeDesigns}
@@ -108,7 +108,7 @@ const RandomizeSection = ({
       >
         Randomize
       </Text>
-      <HStack mb="10px">
+      <Flex mb="10px" flexDirection="row" gap="10px" wrap="wrap">
         <Button variant="subtle" size="sm" onClick={randomizeColors}>
           Colors
         </Button>
@@ -118,7 +118,7 @@ const RandomizeSection = ({
         <Button variant="subtle" size="sm" onClick={randomizeColorsAndDesigns}>
           Colors + Design
         </Button>
-      </HStack>
+      </Flex>
     </Flex>
   );
 };
@@ -140,14 +140,14 @@ const FinishingSection = ({
       >
         Finish
       </Text>
-      <HStack mb="10px">
+      <Flex mb="10px" flexDirection="row" gap="10px" wrap="wrap">
         <Button variant="subtle" size="sm" onClick={takeScreenshot}>
           <BsCamera /> Screenshot
         </Button>
         <Button size="sm" variant="subtle" onClick={downloadSelectedParts}>
           <BsDownload /> Download Models
         </Button>
-      </HStack>
+      </Flex>
     </Flex>
   );
 };

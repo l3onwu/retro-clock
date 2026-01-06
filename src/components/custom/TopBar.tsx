@@ -2,9 +2,10 @@ import { Flex, Text } from "@chakra-ui/react";
 
 export default function TopBar() {
   return (
-    <Flex align="center" justify="space-between" width="100%">
+    <Flex direction="column" align="center" justify="center" width="100%">
       <Logo />
-      <InfoButton />
+      <Description />
+      {/* <InfoButton /> */}
     </Flex>
   );
 }
@@ -22,6 +23,14 @@ const Logo = () => {
   );
 };
 
-const InfoButton = () => {
-  return <Text fontSize="lg">i</Text>;
+// const InfoButton = () => {
+//   return <Text fontSize="lg">i</Text>;
+// };
+
+const Description = () => {
+  return (
+    <Text fontSize="sm" color="gray.600">
+      A vintage-inspired, funky 3D-Printable clock!
+    </Text>
+  );
 };
