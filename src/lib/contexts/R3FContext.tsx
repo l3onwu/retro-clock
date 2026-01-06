@@ -17,10 +17,12 @@ export function R3FProvider({ children }: { children: React.ReactNode }) {
   });
 
   return (
+    // eslint-disable-next-line react-hooks/refs
     <R3FContext.Provider value={state.current}>{children}</R3FContext.Provider>
   );
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export function useR3F() {
   const ctx = useContext(R3FContext);
   if (!ctx) {

@@ -4,7 +4,13 @@ import getRandomColor from "@/lib/utils/getRandomColor";
 import { Flex, HStack, Button, parseColor } from "@chakra-ui/react";
 
 export default function MoreControlsSection() {
-  const { setBodyColor, setDialColor, setHandsColor } = useAppContext();
+  const {
+    setBodyColor,
+    setDialColor,
+    setHandsColor,
+    dialDesignImage,
+    handsDesignImage,
+  } = useAppContext();
   const { gl, scene, camera } = useR3F();
 
   const randomizeColors = () => {
@@ -25,6 +31,25 @@ export default function MoreControlsSection() {
     a.click();
   };
 
+  async function downloadSTL(url: string, filename: string) {
+    const res = await fetch(url);
+    const blob = await res.blob();
+
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = filename;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  async function downloadSelectedParts() {
+    await downloadSTL("/public/body_1.stl", "clock_body.stl");
+    await downloadSTL("/public/base_1.stl", "clock_base.stl");
+    await downloadSTL(dialDesignImage.stlUrl[0], "clock_dial.stl");
+    await downloadSTL(handsDesignImage.stlUrl[0], "clock_hands_hours.stl");
+    await downloadSTL(handsDesignImage.stlUrl[1], "clock_hands_minutes.stl");
+  }
+
   return (
     <Flex direction="column" height="25%">
       <HStack mb="10px">
@@ -36,7 +61,7 @@ export default function MoreControlsSection() {
         </Button>
       </HStack>
       <Flex>
-        <Button size="xl" variant="subtle">
+        <Button size="xl" variant="subtle" onClick={downloadSelectedParts}>
           Export models
         </Button>
       </Flex>

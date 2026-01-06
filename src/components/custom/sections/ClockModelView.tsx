@@ -1,13 +1,23 @@
 import { useAppContext } from "@/lib/contexts/AppContext";
 import { useR3F } from "@/lib/contexts/R3FContext";
+import useClockModelView from "@/lib/hooks/useClockModelView";
 import { Box } from "@chakra-ui/react";
 import { OrbitControls } from "@react-three/drei";
-import { Canvas, useLoader, useThree } from "@react-three/fiber";
+import { Canvas, useThree } from "@react-three/fiber";
 import { useEffect } from "react";
-import { STLLoader } from "three/addons/loaders/STLLoader.js";
 
 export default function ClockModelView() {
   const r3f = useR3F();
+  const {
+    modelClockBody,
+    modelClockBase,
+    modelDialHours,
+    modelDialSmile,
+    modelHandsHoursChopsticks,
+    modelHandsHoursBold,
+    modelHandsMinutesChopsticks,
+    modelHandsMinutesBold,
+  } = useClockModelView();
 
   const {
     bodyColor,
@@ -16,37 +26,6 @@ export default function ClockModelView() {
     dialDesignImage,
     handsDesignImage,
   } = useAppContext();
-
-  const modelClockBody = useLoader(STLLoader, "/public/body_1.stl");
-  const modelClockBase = useLoader(STLLoader, "/public/base_1.stl");
-  const modelDialHours = useLoader(STLLoader, "/public/dial_hours_1.stl");
-  const modelDialSmile = useLoader(STLLoader, "/public/dial_smile_1.stl");
-  const modelHandsHoursChopsticks = useLoader(
-    STLLoader,
-    "/public/hour_hand_chopsticks_1.stl"
-  );
-  const modelHandsMinutesChopsticks = useLoader(
-    STLLoader,
-    "/public/minute_hand_chopsticks_1.stl"
-  );
-  const modelHandsHoursBold = useLoader(
-    STLLoader,
-    "/public/hour_hand_bold_1.stl"
-  );
-  const modelHandsMinutesBold = useLoader(
-    STLLoader,
-    "/public/minute_hand_bold_1.stl"
-  );
-
-  // Center the geometry at origin
-  modelClockBody.center();
-  modelClockBase.center();
-  modelDialHours.center();
-  modelDialSmile.center();
-  modelHandsHoursChopsticks.center();
-  modelHandsMinutesChopsticks.center();
-  modelHandsHoursBold.center();
-  modelHandsMinutesBold.center();
 
   const selectDialDesign = () => {
     switch (dialDesignImage.name) {

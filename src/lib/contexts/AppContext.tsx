@@ -28,6 +28,7 @@ export interface DialDesignImage {
   name: string;
   image: string;
   description: string;
+  stlUrl: string[];
 }
 
 const AppContext = createContext<AppContextType | null>(null);
@@ -70,4 +71,5 @@ export function AppProvider({ children }: { children: ReactNode }) {
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 }
 
+// eslint-disable-next-line react-refresh/only-export-components
 export const useAppContext = () => useContext(AppContext)!;
