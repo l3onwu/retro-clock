@@ -1,7 +1,9 @@
 import { useAppContext } from "@/lib/contexts/AppContext";
 import { useR3F } from "@/lib/contexts/R3FContext";
+import initialStates from "@/lib/initialStates";
 import getRandomColor from "@/lib/utils/getRandomColor";
-import { Flex, HStack, Button, parseColor } from "@chakra-ui/react";
+import { Flex, HStack, Button, parseColor, Text } from "@chakra-ui/react";
+import { BsCamera, BsDownload } from "react-icons/bs";
 
 export default function MoreControlsSection() {
   const {
@@ -10,6 +12,8 @@ export default function MoreControlsSection() {
     setHandsColor,
     dialDesignImage,
     handsDesignImage,
+    setDialDesignImage,
+    setHandsDesignImage,
   } = useAppContext();
   const { gl, scene, camera } = useR3F();
 
@@ -17,6 +21,26 @@ export default function MoreControlsSection() {
     setBodyColor(parseColor(getRandomColor()));
     setDialColor(parseColor(getRandomColor()));
     setHandsColor(parseColor(getRandomColor()));
+  };
+
+  const randomizeDesigns = () => {
+    // Randomly select dial design
+    setDialDesignImage(
+      initialStates.dialDesignsImages[
+        Math.floor(Math.random() * initialStates.dialDesignsImages.length)
+      ]
+    );
+    // Randomly select hands design
+    setHandsDesignImage(
+      initialStates.handsDesignsImages[
+        Math.floor(Math.random() * initialStates.handsDesignsImages.length)
+      ]
+    );
+  };
+
+  const randomizeColorsAndDesigns = () => {
+    randomizeColors();
+    randomizeDesigns();
   };
 
   const takeScreenshot = () => {
@@ -52,19 +76,78 @@ export default function MoreControlsSection() {
 
   return (
     <Flex direction="column" height="25%">
-      <HStack mb="10px">
-        <Button variant="subtle" size="sm" onClick={randomizeColors}>
-          Randomise
-        </Button>
-        <Button variant="subtle" size="sm" onClick={takeScreenshot}>
-          Screenshot
-        </Button>
-      </HStack>
-      <Flex>
-        <Button size="xl" variant="subtle" onClick={downloadSelectedParts}>
-          Export models
-        </Button>
-      </Flex>
+      <RandomizeSection
+        randomizeColors={randomizeColors}
+        randomizeDesigns={randomizeDesigns}
+        randomizeColorsAndDesigns={randomizeColorsAndDesigns}
+      />
+      <FinishingSection
+        takeScreenshot={takeScreenshot}
+        downloadSelectedParts={downloadSelectedParts}
+      />
     </Flex>
   );
 }
+
+const RandomizeSection = ({
+  randomizeColors,
+  randomizeDesigns,
+  randomizeColorsAndDesigns,
+}: {
+  randomizeColors: () => void;
+  randomizeDesigns: () => void;
+  randomizeColorsAndDesigns: () => void;
+}) => {
+  return (
+    <Flex direction="column" mb="20px">
+      <Text
+        fontSize="xs"
+        textTransform={"uppercase"}
+        fontWeight={"500"}
+        mb="5px"
+      >
+        Randomize
+      </Text>
+      <HStack mb="10px">
+        <Button variant="subtle" size="sm" onClick={randomizeColors}>
+          Colors
+        </Button>
+        <Button variant="subtle" size="sm" onClick={randomizeDesigns}>
+          Design
+        </Button>
+        <Button variant="subtle" size="sm" onClick={randomizeColorsAndDesigns}>
+          Colors + Design
+        </Button>
+      </HStack>
+    </Flex>
+  );
+};
+
+const FinishingSection = ({
+  takeScreenshot,
+  downloadSelectedParts,
+}: {
+  takeScreenshot: () => void;
+  downloadSelectedParts: () => void;
+}) => {
+  return (
+    <Flex direction="column" mb="20px">
+      <Text
+        fontSize="xs"
+        textTransform={"uppercase"}
+        fontWeight={"500"}
+        mb="5px"
+      >
+        Finish
+      </Text>
+      <HStack mb="10px">
+        <Button variant="subtle" size="sm" onClick={takeScreenshot}>
+          <BsCamera /> Screenshot
+        </Button>
+        <Button size="sm" variant="subtle" onClick={downloadSelectedParts}>
+          <BsDownload /> Download Models
+        </Button>
+      </HStack>
+    </Flex>
+  );
+};
