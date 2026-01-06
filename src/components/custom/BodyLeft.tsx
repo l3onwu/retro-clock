@@ -11,7 +11,7 @@ export default function BodyLeft() {
 
 const ModelViewer = () => {
   return (
-    <Box height="100%" width="100%" pb="20px">
+    <Box height="85%" width="100%" pb="20px">
       <ClockModelView />
     </Box>
   );
