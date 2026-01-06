@@ -11,12 +11,12 @@ export default function ConfigOptionWrapper({
   return (
     <Flex
       direction="row"
-      mb={4}
+      mb={3}
       width="100%"
       align="center"
       justify="space-between"
     >
-      <Text fontSize="md" fontWeight="400">
+      <Text fontSize="sm" fontWeight="400">
         {configTitle}
       </Text>
       <Box>{children}</Box>
