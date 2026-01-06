@@ -1,10 +1,10 @@
 import type { ReactNode } from "react";
 import { Flex, Text } from "@chakra-ui/react";
-import BodyColorConfig from "./clockConfig/body/BodyColorConfig";
-import DialColorConfig from "./clockConfig/dial/DialColorConfig";
-import DialDesignConfig from "./clockConfig/dial/DialDesignConfig";
-import HandsDesignConfig from "./clockConfig/hands/HandsDesignConfig";
-import HandsColorConfig from "./clockConfig/hands/HandsColorConfig";
+import BodyColorConfig from "../clockConfig/body/BodyColorConfig";
+import DialColorConfig from "../clockConfig/dial/DialColorConfig";
+import DialDesignConfig from "../clockConfig/dial/DialDesignConfig";
+import HandsDesignConfig from "../clockConfig/hands/HandsDesignConfig";
+import HandsColorConfig from "../clockConfig/hands/HandsColorConfig";
 
 export default function ConfigSection() {
   return (
