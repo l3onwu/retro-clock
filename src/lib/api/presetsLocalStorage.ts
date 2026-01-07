@@ -1,5 +1,16 @@
 import type { PresetType } from "@/components/custom/presets/PresetItem";
 
+export const loadInitialPresetFromLocalStorage = (): PresetType | null => {
+  const initialPreset: PresetType | null = JSON.parse(
+    localStorage.getItem("initialPreset") || "null"
+  );
+  return initialPreset;
+};
+
+export const saveInitialPresetToLocalStorage = (presetData: PresetType) => {
+  localStorage.setItem("initialPreset", JSON.stringify(presetData));
+};
+
 export const loadPresetsFromLocalStorage = (): PresetType[] => {
   const existingPresets: PresetType[] =
     JSON.parse(localStorage.getItem("clockPresets") || "[]") || [];

@@ -4,7 +4,7 @@ import { PresetItem, SaveItem } from "./PresetItem";
 import { useAppContext } from "@/lib/contexts/AppContext";
 
 export default function PresetStack() {
-  const { presets: savedPresets } = useAppContext();
+  const { savedPresets } = useAppContext();
   return (
     <Flex
       direction="row"

@@ -1,7 +1,11 @@
 import { Flex, parseColor, Text } from "@chakra-ui/react";
-import { useAppContext, type DialDesignImage } from "@/lib/contexts/AppContext";
+import { useAppContext } from "@/lib/contexts/AppContext";
 import initialStates from "@/lib/initialStates";
-import { savePresetToLocalStorage } from "@/lib/api/presetsLocalStorage";
+import {
+  saveInitialPresetToLocalStorage,
+  savePresetToLocalStorage,
+} from "@/lib/api/presetsLocalStorage";
+import getDesignFromName from "@/lib/utils/getDesignFromName";
 
 export interface PresetType {
   name: string;
@@ -19,8 +23,8 @@ export const SaveItem = () => {
     handsColor,
     dialDesignImage,
     handsDesignImage,
-    presets,
-    setPresets,
+    savedPresets,
+    setSavedPresets,
   } = useAppContext();
 
   const savePreset = () => {
@@ -35,7 +39,7 @@ export const SaveItem = () => {
     // Save to local storage
     savePresetToLocalStorage(newPreset);
     // Save to current state
-    setPresets([...presets, newPreset]);
+    setSavedPresets([...savedPresets, newPreset]);
     alert(
       `Preset Saved!\n\nName: ${newPreset.name}\nBody Color: ${newPreset.bodyColor}\nDial Color: ${newPreset.dialColor}\nHands Color: ${newPreset.handsColor}\nDial Design: ${newPreset.dialDesign}\nHands Design: ${newPreset.handsDesign}`
     );
@@ -69,15 +73,8 @@ export const PresetItem = ({ preset }: { preset: PresetType }) => {
     setHandsDesignImage,
   } = useAppContext();
 
-  const getDesignFromName = (
-    designName: string,
-    collection: DialDesignImage[]
-  ) => {
-    const design = collection.find((item) => item.name === designName);
-    return design ? design : collection[0];
-  };
-
   const applyClockPreset = (preset: PresetType) => {
+    // Set configurations
     setBodyColor(parseColor(preset.bodyColor));
     setDialColor(parseColor(preset.dialColor));
     setHandsColor(parseColor(preset.handsColor));

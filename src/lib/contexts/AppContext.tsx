@@ -1,15 +1,27 @@
 import React, {
   createContext,
   useContext,
+  useEffect,
   useState,
   type ReactNode,
 } from "react";
 import initialStates from "../initialStates";
 import { parseColor, type Color } from "@chakra-ui/react";
-import { loadPresetsFromLocalStorage } from "../api/presetsLocalStorage";
+import {
+  loadInitialPresetFromLocalStorage,
+  loadPresetsFromLocalStorage,
+  saveInitialPresetToLocalStorage,
+} from "../api/presetsLocalStorage";
 import type { PresetType } from "@/components/custom/presets/PresetItem";
+import getDesignFromName from "../utils/getDesignFromName";
 
 interface AppContextType {
+  // Initial loaded preset
+  initialPreset: PresetType | null;
+  setInitialPreset: React.Dispatch<React.SetStateAction<PresetType | null>>;
+  // Saved presets
+  savedPresets: PresetType[];
+  setSavedPresets: React.Dispatch<React.SetStateAction<PresetType[]>>;
   // Body options
   bodyColor: Color;
   setBodyColor: React.Dispatch<React.SetStateAction<Color>>;
@@ -23,9 +35,6 @@ interface AppContextType {
   setHandsColor: React.Dispatch<React.SetStateAction<Color>>;
   handsDesignImage: DialDesignImage;
   setHandsDesignImage: React.Dispatch<React.SetStateAction<DialDesignImage>>;
-  // Saved presets
-  presets: PresetType[];
-  setPresets: React.Dispatch<React.SetStateAction<PresetType[]>>;
 }
 
 export interface DialDesignImage {
@@ -39,33 +48,80 @@ export interface DialDesignImage {
 const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
+  // APP STATE
+  // Initial loaded preset
+  const [initialPreset, setInitialPreset] = useState<PresetType | null>(
+    loadInitialPresetFromLocalStorage()
+  );
+
+  // Saved presets
+  const [savedPresets, setSavedPresets] = useState<PresetType[]>(
+    loadPresetsFromLocalStorage()
+  );
+
+  // CLOCK DESIGN OPTIONS
   // Body options
   const [bodyColor, setBodyColor] = useState(
-    parseColor(initialStates.initialBodyColor)
+    initialPreset
+      ? parseColor(initialPreset.bodyColor)
+      : parseColor(initialStates.initialBodyColor)
   );
 
   // Dial options
   const [dialColor, setDialColor] = useState(
-    parseColor(initialStates.initialDialColor)
+    initialPreset
+      ? parseColor(initialPreset.dialColor)
+      : parseColor(initialStates.initialDialColor)
   );
   const [dialDesignImage, setDialDesignImage] = useState(
-    initialStates.dialDesignsImages[0]
+    initialPreset
+      ? getDesignFromName(
+          initialPreset.dialDesign,
+          initialStates.dialDesignsImages
+        )
+      : initialStates.dialDesignsImages[0]
   );
 
   // Hands options
   const [handsColor, setHandsColor] = useState(
-    parseColor(initialStates.initialHandsColor)
+    initialPreset
+      ? parseColor(initialPreset.handsColor)
+      : parseColor(initialStates.initialHandsColor)
   );
   const [handsDesignImage, setHandsDesignImage] = useState(
-    initialStates.handsDesignsImages[0]
+    initialPreset
+      ? getDesignFromName(
+          initialPreset.handsDesign,
+          initialStates.handsDesignsImages
+        )
+      : initialStates.handsDesignsImages[0]
   );
 
-  // Saved presets
-  const [presets, setPresets] = useState<PresetType[]>(
-    loadPresetsFromLocalStorage()
-  );
+  // Side effect - save to local storage when initialPreset changes
+  useEffect(() => {
+    const newPreset = {
+      name: "initialPreset",
+      bodyColor: bodyColor.toString("hsl"),
+      dialColor: dialColor.toString("hsl"),
+      handsColor: handsColor.toString("hsl"),
+      dialDesign: dialDesignImage.name,
+      handsDesign: handsDesignImage.name,
+    };
+    saveInitialPresetToLocalStorage(newPreset);
+  }, [
+    initialPreset,
+    bodyColor,
+    dialColor,
+    handsColor,
+    dialDesignImage,
+    handsDesignImage,
+  ]);
 
   const value: AppContextType = {
+    initialPreset,
+    setInitialPreset,
+    savedPresets,
+    setSavedPresets,
     bodyColor,
     setBodyColor,
     dialColor,
@@ -76,8 +132,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setDialDesignImage,
     handsDesignImage,
     setHandsDesignImage,
-    presets,
-    setPresets,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
