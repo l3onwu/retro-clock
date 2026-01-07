@@ -8,22 +8,6 @@ const clockPresets = [
     handsDesign: "Chopsticks",
   },
   {
-    name: "Dark Mode",
-    bodyColor: "#000000",
-    dialColor: "#FFFFFF",
-    handsColor: "#00FF00",
-    dialDesign: "Smile",
-    handsDesign: "Bold",
-  },
-  {
-    name: "Pastel",
-    bodyColor: "#FFDDC1",
-    dialColor: "#333333",
-    handsColor: "#0000FF",
-    dialDesign: "Full Markers",
-    handsDesign: "Chopsticks",
-  },
-  {
     name: "Retro",
     bodyColor: "#F4A261",
     dialColor: "#2A9D8F",
@@ -38,14 +22,6 @@ const clockPresets = [
     handsColor: "#444444",
     dialDesign: "Full Markers",
     handsDesign: "Chopsticks",
-  },
-  {
-    name: "Vibrant",
-    bodyColor: "#FF5733",
-    dialColor: "#33FF57",
-    handsColor: "#3357FF",
-    dialDesign: "Smile",
-    handsDesign: "Bold",
   },
   {
     name: "Earth Tones",
@@ -78,14 +54,6 @@ const clockPresets = [
     handsColor: "#B22222",
     dialDesign: "Full Markers",
     handsDesign: "Chopsticks",
-  },
-  {
-    name: "Pokemon",
-    bodyColor: "#FFCB05",
-    dialColor: "#3B4CCA",
-    handsColor: "#FF0000",
-    dialDesign: "Full Markers",
-    handsDesign: "Bold",
   },
 ];
 
