@@ -3,6 +3,7 @@ import TopBar from "./TopBar";
 import BodyLeft from "./BodyLeft";
 import BodyRight from "./BodyRight";
 import BodyCenter from "./BodyCenter";
+import BottomBar from "./BottomBar";
 
 export default function PageContainer() {
   return (
@@ -18,7 +19,7 @@ export default function PageContainer() {
       </Flex>
 
       {/* Body */}
-      <Flex width="100%" height="calc(100vh - (3 * 100px))">
+      <Flex width="100%" height="calc(100vh - 280px)" justify="space-evenly">
         <Flex width="16%" height="100%" pr="20px">
           <BodyLeft />
         </Flex>
@@ -33,17 +34,9 @@ export default function PageContainer() {
       </Flex>
 
       {/* Bottom Bar */}
-      <Flex height="200px" width="100%" align="center">
+      <Flex height="180px" width="100%" align="center">
         <BottomBar />
       </Flex>
     </Container>
   );
 }
-
-const BottomBar = () => {
-  return (
-    <Flex direction="column" align="center" width="100%" height="100%">
-      Bottom Bar
-    </Flex>
-  );
-};
