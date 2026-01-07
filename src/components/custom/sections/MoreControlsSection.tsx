@@ -1,47 +1,11 @@
 import { useAppContext } from "@/lib/contexts/AppContext";
 import { useR3F } from "@/lib/contexts/R3FContext";
-import initialStates from "@/lib/initialStates";
-import getRandomColor from "@/lib/utils/getRandomColor";
-import { Flex, Button, parseColor, Text } from "@chakra-ui/react";
+import { Flex, Button, Text } from "@chakra-ui/react";
 import { BsCamera, BsDownload } from "react-icons/bs";
 
 export default function MoreControlsSection() {
-  const {
-    setBodyColor,
-    setDialColor,
-    setHandsColor,
-    dialDesignImage,
-    handsDesignImage,
-    setDialDesignImage,
-    setHandsDesignImage,
-  } = useAppContext();
+  const { dialDesignImage, handsDesignImage } = useAppContext();
   const { gl, scene, camera } = useR3F();
-
-  const randomizeColors = () => {
-    setBodyColor(parseColor(getRandomColor()));
-    setDialColor(parseColor(getRandomColor()));
-    setHandsColor(parseColor(getRandomColor()));
-  };
-
-  const randomizeDesigns = () => {
-    // Randomly select dial design
-    setDialDesignImage(
-      initialStates.dialDesignsImages[
-        Math.floor(Math.random() * initialStates.dialDesignsImages.length)
-      ]
-    );
-    // Randomly select hands design
-    setHandsDesignImage(
-      initialStates.handsDesignsImages[
-        Math.floor(Math.random() * initialStates.handsDesignsImages.length)
-      ]
-    );
-  };
-
-  const randomizeColorsAndDesigns = () => {
-    randomizeColors();
-    randomizeDesigns();
-  };
 
   const takeScreenshot = () => {
     if (!gl || !scene || !camera) return;
@@ -76,11 +40,6 @@ export default function MoreControlsSection() {
 
   return (
     <Flex direction="column">
-      <RandomizeSection
-        randomizeColors={randomizeColors}
-        randomizeDesigns={randomizeDesigns}
-        randomizeColorsAndDesigns={randomizeColorsAndDesigns}
-      />
       <FinishingSection
         takeScreenshot={takeScreenshot}
         downloadSelectedParts={downloadSelectedParts}
@@ -88,40 +47,6 @@ export default function MoreControlsSection() {
     </Flex>
   );
 }
-
-const RandomizeSection = ({
-  randomizeColors,
-  randomizeDesigns,
-  randomizeColorsAndDesigns,
-}: {
-  randomizeColors: () => void;
-  randomizeDesigns: () => void;
-  randomizeColorsAndDesigns: () => void;
-}) => {
-  return (
-    <Flex direction="column" mb="20px">
-      <Text
-        fontSize="xs"
-        textTransform={"uppercase"}
-        fontWeight={"500"}
-        mb="5px"
-      >
-        Randomize
-      </Text>
-      <Flex mb="10px" flexDirection="row" gap="10px" wrap="wrap">
-        <Button variant="subtle" size="sm" onClick={randomizeColors}>
-          Colors
-        </Button>
-        <Button variant="subtle" size="sm" onClick={randomizeDesigns}>
-          Design
-        </Button>
-        <Button variant="subtle" size="sm" onClick={randomizeColorsAndDesigns}>
-          Colors + Design
-        </Button>
-      </Flex>
-    </Flex>
-  );
-};
 
 const FinishingSection = ({
   takeScreenshot,
