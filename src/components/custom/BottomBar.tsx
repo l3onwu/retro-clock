@@ -1,17 +1,20 @@
 import clockPresets from "@/lib/clockPresets";
-import { useAppContext } from "@/lib/contexts/AppContext";
+import { useAppContext, type DialDesignImage } from "@/lib/contexts/AppContext";
+import initialStates from "@/lib/initialStates";
 import { Flex, parseColor, Text } from "@chakra-ui/react";
 import { useState } from "react";
 
 export interface PresetType {
+  name: string;
   bodyColor: string;
   dialColor: string;
   handsColor: string;
-  name: string;
+  dialDesign: string;
+  handsDesign: string;
 }
 
 export default function BottomBar() {
-  const [menuOption, setMenuOption] = useState("Presets");
+  const [menuOption, setMenuOption] = useState<null | string>("Presets");
 
   return (
     <Flex
@@ -21,17 +24,33 @@ export default function BottomBar() {
       height="100%"
       pt="30px"
     >
-      <MenuOptions />
+      <MenuOptions setMenuOption={setMenuOption} menuOption={menuOption} />
 
       {menuOption === "Presets" && <PresetStack />}
     </Flex>
   );
 }
 
-const MenuOptions = () => {
+const MenuOptions = ({
+  setMenuOption,
+  menuOption,
+}: {
+  setMenuOption: React.Dispatch<React.SetStateAction<null | string>>;
+  menuOption: null | string;
+}) => {
   return (
     <Flex direction="row" mb="20px">
-      <Text fontSize="xs" textTransform={"uppercase"} fontWeight={"500"}>
+      <Text
+        fontSize="xs"
+        textTransform={"uppercase"}
+        fontWeight={"500"}
+        color={menuOption === "Presets" ? "black" : "gray.500"}
+        cursor="pointer"
+        mx="10px"
+        onClick={() =>
+          setMenuOption(menuOption === "Presets" ? null : "Presets")
+        }
+      >
         Presets
       </Text>
     </Flex>
@@ -75,12 +94,32 @@ const PresetStack = () => {
 // };
 
 const PresetItem = ({ preset }: { preset: PresetType }) => {
-  const { setBodyColor, setDialColor, setHandsColor } = useAppContext();
+  const {
+    setBodyColor,
+    setDialColor,
+    setHandsColor,
+    setDialDesignImage,
+    setHandsDesignImage,
+  } = useAppContext();
+
+  const getDesignFromName = (
+    designName: string,
+    collection: DialDesignImage[]
+  ) => {
+    const design = collection.find((item) => item.name === designName);
+    return design ? design : collection[0];
+  };
 
   const applyClockPreset = (preset: PresetType) => {
     setBodyColor(parseColor(preset.bodyColor));
     setDialColor(parseColor(preset.dialColor));
     setHandsColor(parseColor(preset.handsColor));
+    setDialDesignImage(
+      getDesignFromName(preset.dialDesign, initialStates.dialDesignsImages)
+    );
+    setHandsDesignImage(
+      getDesignFromName(preset.handsDesign, initialStates.handsDesignsImages)
+    );
   };
 
   return (
