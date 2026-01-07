@@ -1,6 +1,6 @@
 import { Flex, Text } from "@chakra-ui/react";
 import { useState } from "react";
-import PresetStack from "./presets/PresetStack";
+import PresetStack from "../presets/PresetStack";
 
 export default function BottomBar() {
   const [menuOption, setMenuOption] = useState<null | string>("Presets");

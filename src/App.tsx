@@ -1,5 +1,5 @@
 import { Box } from "@chakra-ui/react";
-import PageContainer from "./components/custom/PageContainer";
+import PageContainer from "./components/custom/page/PageContainer";
 
 function App() {
   return (

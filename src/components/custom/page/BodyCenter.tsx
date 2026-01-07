@@ -1,5 +1,5 @@
 import { Box, Flex } from "@chakra-ui/react";
-import ClockModelView from "./sections/ClockModelView";
+import ClockModelView from "../sections/ClockModelView";
 
 export default function BodyCenter() {
   return (

@@ -1,5 +1,5 @@
 import { Flex } from "@chakra-ui/react";
-import MoreControlsSection from "./sections/MoreControlsSection";
+import MoreControlsSection from "../sections/MoreControlsSection";
 
 export default function BodyRight() {
   return (
