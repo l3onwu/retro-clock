@@ -7,12 +7,7 @@ import BottomBar from "./BottomBar";
 
 export default function PageContainer() {
   return (
-    <Container
-      direction="column"
-      height="100vh"
-      width="100vw"
-      maxWidth="1300px"
-    >
+    <Container direction="column" height="100%" width="100%" maxWidth="1300px">
       {/* Top Bar */}
       <Flex height="100px" width="100%" align="center">
         <TopBar />
