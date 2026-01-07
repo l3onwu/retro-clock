@@ -2,7 +2,7 @@ import { useAppContext } from "@/lib/contexts/AppContext";
 import { useR3F } from "@/lib/contexts/R3FContext";
 import initialStates from "@/lib/initialStates";
 import getRandomColor from "@/lib/utils/getRandomColor";
-import { Flex, HStack, Button, parseColor, Text } from "@chakra-ui/react";
+import { Flex, Button, parseColor, Text } from "@chakra-ui/react";
 import { BsCamera, BsDownload } from "react-icons/bs";
 
 export default function MoreControlsSection() {

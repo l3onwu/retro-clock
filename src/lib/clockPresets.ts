@@ -1,9 +1,9 @@
 const clockPresets = [
   {
     name: "Classic",
-    bodyColor: "#FFFFFF",
-    dialColor: "#000000",
-    handsColor: "#FF0000",
+    bodyColor: "#8EB672",
+    dialColor: "#ffffff",
+    handsColor: "#E54D4C",
     dialDesign: "Full Markers",
     handsDesign: "Chopsticks",
   },
