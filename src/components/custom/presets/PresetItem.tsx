@@ -1,6 +1,7 @@
 import { Flex, parseColor, Text } from "@chakra-ui/react";
 import { useAppContext, type DialDesignImage } from "@/lib/contexts/AppContext";
 import initialStates from "@/lib/initialStates";
+import { savePresetToLocalStorage } from "@/lib/api/presetsLocalStorage";
 
 export interface PresetType {
   name: string;
@@ -12,6 +13,34 @@ export interface PresetType {
 }
 
 export const SaveItem = () => {
+  const {
+    bodyColor,
+    dialColor,
+    handsColor,
+    dialDesignImage,
+    handsDesignImage,
+    presets,
+    setPresets,
+  } = useAppContext();
+
+  const savePreset = () => {
+    const newPreset: PresetType = {
+      name: `Preset ${new Date().toLocaleTimeString()}`,
+      bodyColor: bodyColor.toString("hsl"),
+      dialColor: dialColor.toString("hsl"),
+      handsColor: handsColor.toString("hsl"),
+      dialDesign: dialDesignImage.name,
+      handsDesign: handsDesignImage.name,
+    };
+    // Save to local storage
+    savePresetToLocalStorage(newPreset);
+    // Save to current state
+    setPresets([...presets, newPreset]);
+    alert(
+      `Preset Saved!\n\nName: ${newPreset.name}\nBody Color: ${newPreset.bodyColor}\nDial Color: ${newPreset.dialColor}\nHands Color: ${newPreset.handsColor}\nDial Design: ${newPreset.dialDesign}\nHands Design: ${newPreset.handsDesign}`
+    );
+  };
+
   return (
     <Flex
       flexShrink={0}
@@ -23,6 +52,7 @@ export const SaveItem = () => {
       border="1px solid #d4d4d4ff"
       borderRadius="10px"
       cursor="pointer"
+      onClick={savePreset}
       _hover={{ scale: 1.05, boxShadow: "md" }}
     >
       <Text fontSize="xs">Save Preset</Text>

@@ -6,6 +6,8 @@ import React, {
 } from "react";
 import initialStates from "../initialStates";
 import { parseColor, type Color } from "@chakra-ui/react";
+import { loadPresetsFromLocalStorage } from "../api/presetsLocalStorage";
+import type { PresetType } from "@/components/custom/presets/PresetItem";
 
 interface AppContextType {
   // Body options
@@ -21,6 +23,9 @@ interface AppContextType {
   setHandsColor: React.Dispatch<React.SetStateAction<Color>>;
   handsDesignImage: DialDesignImage;
   setHandsDesignImage: React.Dispatch<React.SetStateAction<DialDesignImage>>;
+  // Saved presets
+  presets: PresetType[];
+  setPresets: React.Dispatch<React.SetStateAction<PresetType[]>>;
 }
 
 export interface DialDesignImage {
@@ -55,6 +60,11 @@ export function AppProvider({ children }: { children: ReactNode }) {
     initialStates.handsDesignsImages[0]
   );
 
+  // Saved presets
+  const [presets, setPresets] = useState<PresetType[]>(
+    loadPresetsFromLocalStorage()
+  );
+
   const value: AppContextType = {
     bodyColor,
     setBodyColor,
@@ -66,6 +76,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setDialDesignImage,
     handsDesignImage,
     setHandsDesignImage,
+    presets,
+    setPresets,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
