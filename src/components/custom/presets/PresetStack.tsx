@@ -1,7 +1,8 @@
 import clockPresets from "@/lib/clockPresets";
 import { Flex } from "@chakra-ui/react";
-import { PresetItem, SaveItem } from "./PresetItem";
 import { useAppContext } from "@/lib/contexts/AppContext";
+import SavePresetItem from "./SavePresetItem";
+import PresetItem from "./PresetItem";
 
 export default function PresetStack() {
   const { savedPresets } = useAppContext();
@@ -15,7 +16,7 @@ export default function PresetStack() {
       gap="10px"
       p="5px"
     >
-      <SaveItem />
+      <SavePresetItem />
       {/* Preset options */}
       {[...savedPresets].reverse().map((preset, idx) => (
         <PresetItem key={idx} preset={preset} />
