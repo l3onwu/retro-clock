@@ -1,7 +1,7 @@
+import clockPresets from "./clockPresets";
+
 const initialStates = {
-  initialBodyColor: "#8EB672",
-  initialDialColor: "#ffffff",
-  initialHandsColor: "#E54D4C",
+  initialPreset: clockPresets[1],
   dialDesignsImages: [
     {
       id: 1,

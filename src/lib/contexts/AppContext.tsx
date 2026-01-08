@@ -64,14 +64,14 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [bodyColor, setBodyColor] = useState(
     initialPreset
       ? parseColor(initialPreset.bodyColor)
-      : parseColor(initialStates.initialBodyColor)
+      : parseColor(initialStates.initialPreset.bodyColor)
   );
 
   // Dial options
   const [dialColor, setDialColor] = useState(
     initialPreset
       ? parseColor(initialPreset.dialColor)
-      : parseColor(initialStates.initialDialColor)
+      : parseColor(initialStates.initialPreset.dialColor)
   );
   const [dialDesignImage, setDialDesignImage] = useState(
     initialPreset
@@ -79,14 +79,17 @@ export function AppProvider({ children }: { children: ReactNode }) {
           initialPreset.dialDesign,
           initialStates.dialDesignsImages
         )
-      : initialStates.dialDesignsImages[0]
+      : getDesignFromName(
+          initialStates.initialPreset.dialDesign,
+          initialStates.dialDesignsImages
+        )
   );
 
   // Hands options
   const [handsColor, setHandsColor] = useState(
     initialPreset
       ? parseColor(initialPreset.handsColor)
-      : parseColor(initialStates.initialHandsColor)
+      : parseColor(initialStates.initialPreset.handsColor)
   );
   const [handsDesignImage, setHandsDesignImage] = useState(
     initialPreset
@@ -94,7 +97,10 @@ export function AppProvider({ children }: { children: ReactNode }) {
           initialPreset.handsDesign,
           initialStates.handsDesignsImages
         )
-      : initialStates.handsDesignsImages[0]
+      : getDesignFromName(
+          initialStates.initialPreset.handsDesign,
+          initialStates.handsDesignsImages
+        )
   );
 
   // Side effect - save to local storage when initialPreset changes
