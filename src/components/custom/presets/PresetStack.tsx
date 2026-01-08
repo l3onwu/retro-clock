@@ -19,7 +19,7 @@ export default function PresetStack() {
       <SavePresetItem />
       {/* Preset options */}
       {[...savedPresets].reverse().map((preset, idx) => (
-        <PresetItem key={idx} preset={preset} />
+        <PresetItem key={idx} preset={preset} user={true} />
       ))}
       {clockPresets.map((preset, idx) => (
         <PresetItem key={idx} preset={preset} />

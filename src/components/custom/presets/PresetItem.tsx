@@ -1,4 +1,4 @@
-import { Flex, parseColor, Text } from "@chakra-ui/react";
+import { Flex, parseColor, Text, Badge, Box } from "@chakra-ui/react";
 import { useAppContext } from "@/lib/contexts/AppContext";
 import initialStates from "@/lib/initialStates";
 import getDesignFromName from "@/lib/utils/getDesignFromName";
@@ -12,7 +12,13 @@ export interface PresetType {
   handsDesign: string;
 }
 
-export default function PresetItem({ preset }: { preset: PresetType }) {
+export default function PresetItem({
+  preset,
+  user = false,
+}: {
+  preset: PresetType;
+  user?: boolean;
+}) {
   const {
     setBodyColor,
     setDialColor,
@@ -47,7 +53,19 @@ export default function PresetItem({ preset }: { preset: PresetType }) {
       cursor="pointer"
       onClick={() => applyClockPreset(preset)}
       _hover={{ scale: 1.05, boxShadow: "md" }}
+      position="relative"
     >
+      {user && (
+        <Badge
+          colorPalette="yellow"
+          variant="solid"
+          size="xs"
+          position="absolute"
+          top="5px"
+        >
+          User
+        </Badge>
+      )}
       <Text fontSize="xs">{preset.name}</Text>
       {/* Create colored boxes to match preset */}
       <Flex direction="row" mt="5px" gap="5px">
