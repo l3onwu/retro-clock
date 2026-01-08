@@ -10,7 +10,7 @@ export default function PresetStack() {
     <Flex
       direction="row"
       width="100%"
-      height="100px"
+      height="105px"
       overflowX="auto"
       overflowY="hidden"
       gap="10px"
@@ -19,10 +19,15 @@ export default function PresetStack() {
       <SavePresetItem />
       {/* Preset options */}
       {[...savedPresets].reverse().map((preset, idx) => (
-        <PresetItem key={idx} preset={preset} user={true} />
+        <PresetItem
+          key={idx}
+          preset={preset}
+          user={true}
+          index={savedPresets.length - 1 - idx}
+        />
       ))}
       {clockPresets.map((preset, idx) => (
-        <PresetItem key={idx} preset={preset} />
+        <PresetItem key={idx} preset={preset} index={idx} />
       ))}
     </Flex>
   );

@@ -3,10 +3,10 @@ import { useState } from "react";
 import PresetStack from "../presets/PresetStack";
 import RandomizeStack from "../presets/RandomizeStack";
 
-type MenuOptions = "Presets" | "Randomize" | null;
+type MenuOptions = "Presets" | "Randomize";
 
 export default function BottomBar() {
-  const [menuOption, setMenuOption] = useState<null | string>("Presets");
+  const [menuOption, setMenuOption] = useState<MenuOptions>("Presets");
 
   return (
     <Flex
@@ -28,26 +28,22 @@ const MenuOptions = ({
   setMenuOption,
   menuOption,
 }: {
-  setMenuOption: React.Dispatch<React.SetStateAction<null | string>>;
-  menuOption: null | string;
+  setMenuOption: React.Dispatch<React.SetStateAction<MenuOptions>>;
+  menuOption: MenuOptions;
 }) => {
   return (
     <Flex direction="row" mb="20px">
       <Text
         {...menuOptionStyle}
         color={menuOption === "Presets" ? "black" : "gray.500"}
-        onClick={() =>
-          setMenuOption(menuOption === "Presets" ? null : "Presets")
-        }
+        onClick={() => setMenuOption("Presets")}
       >
         Presets
       </Text>
       <Text
         {...menuOptionStyle}
         color={menuOption === "Randomize" ? "black" : "gray.500"}
-        onClick={() =>
-          setMenuOption(menuOption === "Randomize" ? null : "Randomize")
-        }
+        onClick={() => setMenuOption("Randomize")}
       >
         Randomize
       </Text>
