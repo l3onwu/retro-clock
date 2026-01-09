@@ -9,6 +9,7 @@ export default function PresetStack() {
   return (
     <Flex
       direction="row"
+      align="center"
       width="100%"
       height="105px"
       overflowX="auto"

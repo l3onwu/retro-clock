@@ -10,6 +10,7 @@ import {
   CloseButton,
   Input,
 } from "@chakra-ui/react";
+import { LuFolderHeart } from "react-icons/lu";
 
 export default function SavePresetItem() {
   const {
@@ -64,6 +65,7 @@ export default function SavePresetItem() {
         <Flex
           flexShrink={0}
           direction="column"
+          gap={2}
           align="center"
           justify="center"
           width="150px"
@@ -74,6 +76,7 @@ export default function SavePresetItem() {
           onClick={() => setDialogOpen(true)}
           _hover={{ scale: 1.05, boxShadow: "md" }}
         >
+          <LuFolderHeart size={24} />
           <Text fontSize="xs">Save Preset</Text>
         </Flex>
       </Dialog.Trigger>
