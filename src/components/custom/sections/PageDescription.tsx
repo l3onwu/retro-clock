@@ -57,8 +57,16 @@ export default function PageDescription() {
           </Dialog.CloseTrigger>
           {/* Header */}
           <Dialog.Header>
-            <Dialog.Title textAlign="center" width="100%" mb="-10px">
-              Welcome to retroclock.io!
+            <Dialog.Title
+              textAlign="center"
+              width="100%"
+              mb="-10px"
+              fontFamily="ranchers"
+              textTransform="uppercase"
+              fontWeight="400"
+              fontSize="2xl"
+            >
+              Welcome!
             </Dialog.Title>
           </Dialog.Header>
           {/* Body */}
@@ -83,7 +91,10 @@ export default function PageDescription() {
                         <Flex direction="column">
                           <Image
                             borderRadius={"20px"}
-                            fit="contain"
+                            fit="cover"
+                            // Temp style before updated gifs
+                            height="315px"
+                            objectPosition="bottom"
                             width="100%"
                             src={initialStates.gifCarouselItems[index].src}
                             alt={initialStates.gifCarouselItems[index].label}
