@@ -14,22 +14,27 @@ export default function PageContainer() {
       </Flex>
 
       {/* Body */}
-      <Flex width="100%" height="calc(100vh - 280px)" justify="space-evenly">
-        <Flex width="16%" height="100%" pr="20px">
+      <Flex
+        width="100%"
+        height="calc(100vh - 300px)"
+        justify="space-between"
+        px="20px"
+      >
+        <Flex width="20%" height="100%" pr="20px">
           <BodyLeft />
         </Flex>
 
-        <Flex width="66%" height="100%">
+        <Flex width="50%" height="100%">
           <BodyCenter />
         </Flex>
 
-        <Flex width="16%" height="100%" pl="20px">
+        <Flex width="20%" height="100%" pl="20px">
           <BodyRight />
         </Flex>
       </Flex>
 
       {/* Bottom Bar */}
-      <Flex height="180px" width="100%" align="center">
+      <Flex height="200px" width="100%" align="center">
         <BottomBar />
       </Flex>
     </Container>

@@ -15,7 +15,8 @@ export default function PresetStack() {
       overflowX="auto"
       overflowY="hidden"
       gap="10px"
-      p="5px"
+      py="5px"
+      px="5px"
     >
       <SavePresetItem />
       {/* Preset options */}
