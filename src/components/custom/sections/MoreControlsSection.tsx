@@ -57,19 +57,14 @@ const FinishingSection = ({
 }) => {
   return (
     <Flex direction="column" mb="20px">
-      <Text
-        fontSize="xs"
-        textTransform={"uppercase"}
-        fontWeight={"500"}
-        mb="5px"
-      >
+      <Text fontSize="lg" fontWeight="600" mb="10px">
         Finish
       </Text>
       <Flex mb="10px" flexDirection="row" gap="10px" wrap="wrap">
-        <Button variant="subtle" size="sm" onClick={takeScreenshot}>
+        <Button variant="outline" size="sm" onClick={takeScreenshot}>
           <BsCamera /> Screenshot
         </Button>
-        <Button size="sm" variant="subtle" onClick={downloadSelectedParts}>
+        <Button variant="outline" size="sm" onClick={downloadSelectedParts}>
           <BsDownload /> Download Models
         </Button>
       </Flex>

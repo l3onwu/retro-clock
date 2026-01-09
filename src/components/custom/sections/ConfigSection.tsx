@@ -42,12 +42,7 @@ const ClockConfigWrapper = ({
       borderBottom="0.5px solid #d4d4d4ff"
       pb={4}
     >
-      <Text
-        // fontFamily="Mogra"
-        fontSize="xl"
-        fontWeight="600"
-        // textTransform="uppercase"
-      >
+      <Text fontSize="lg" fontWeight="600">
         {configTitle}
       </Text>
       <Flex mt={2} direction="column" width="100%">

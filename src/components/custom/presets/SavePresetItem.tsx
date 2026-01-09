@@ -91,14 +91,14 @@ export default function SavePresetItem() {
           </Dialog.CloseTrigger>
           {/* Header */}
           <Dialog.Header>
-            <Dialog.Title>Save preset</Dialog.Title>
+            <Dialog.Title>Choose preset name</Dialog.Title>
           </Dialog.Header>
           {/* Body */}
           <Dialog.Body>
             <Flex width="100%" p={2} direction="row" gap={4}>
               <Input
                 ref={initialRef}
-                placeholder="Preset Name"
+                placeholder="Rainbow Horizon"
                 value={newPresetName}
                 onChange={(e) => setNewPresetName(e.target.value)}
               />
@@ -107,7 +107,7 @@ export default function SavePresetItem() {
                 disabled={!isValidName(newPresetName)}
                 variant={"subtle"}
               >
-                Save Preset
+                Save
               </Button>
             </Flex>
           </Dialog.Body>
