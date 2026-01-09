@@ -1,7 +1,7 @@
 import clockPresets from "./clockPresets";
 
 const initialStates = {
-  initialPreset: clockPresets[1],
+  initialPreset: clockPresets[0],
   dialDesignsImages: [
     {
       id: 1,

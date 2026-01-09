@@ -1,6 +1,6 @@
 const clockPresets = [
   {
-    name: "Classic",
+    name: "Retro",
     bodyColor: "#8EB672",
     dialColor: "#ffffff",
     handsColor: "#E54D4C",
@@ -16,6 +16,14 @@ const clockPresets = [
     handsDesign: "Chopsticks",
   },
   {
+    name: "Columbia Blue",
+    bodyColor: "#9BDDFF",
+    dialColor: "#E9F1F7",
+    handsColor: "#2E4A62",
+    dialDesign: "Full Markers",
+    handsDesign: "Chopsticks",
+  },
+  {
     name: "New York",
     bodyColor: "#1C1C1C",
     dialColor: "#F0E68C",
@@ -28,14 +36,6 @@ const clockPresets = [
     bodyColor: "#A0522D",
     dialColor: "#DEB887",
     handsColor: "#556B2F",
-    dialDesign: "Full Markers",
-    handsDesign: "Chopsticks",
-  },
-  {
-    name: "Ocean",
-    bodyColor: "#0077BE",
-    dialColor: "#00A9E0",
-    handsColor: "#003F5C",
     dialDesign: "Full Markers",
     handsDesign: "Chopsticks",
   },
