@@ -2,6 +2,7 @@ import { useAppContext } from "@/lib/contexts/AppContext";
 import initialStates from "@/lib/initialStates";
 import getRandomColor from "@/lib/utils/getRandomColor";
 import { Flex, parseColor, Text } from "@chakra-ui/react";
+import { LuPaintbrush, LuRuler } from "react-icons/lu";
 
 export default function RandomizeStack() {
   const {
@@ -65,6 +66,7 @@ const RandomizeColors = ({
 }) => {
   return (
     <Flex {...randomBoxStyle} onClick={randomizeColors}>
+      <LuPaintbrush size={24} />
       <Text fontSize="xs">Color</Text>
     </Flex>
   );
@@ -77,6 +79,7 @@ const RandomizeDesigns = ({
 }) => {
   return (
     <Flex {...randomBoxStyle} onClick={randomizeDesigns}>
+      <LuRuler size={24} />
       <Text fontSize="xs">Design</Text>
     </Flex>
   );
@@ -89,6 +92,11 @@ const RandomizeColorsAndDesigns = ({
 }) => {
   return (
     <Flex {...randomBoxStyle} onClick={randomizeColorsAndDesigns}>
+      <Flex direction="row" gap={1}>
+        <LuPaintbrush size={20} />
+        <LuRuler size={20} />
+      </Flex>
+
       <Text fontSize="xs">Color + Design</Text>
     </Flex>
   );
@@ -99,6 +107,7 @@ const randomBoxStyle = {
   direction: "column",
   align: "center",
   justify: "center",
+  gap: 1,
   width: "150px",
   height: "90px",
   border: "1px solid #d4d4d4ff",
