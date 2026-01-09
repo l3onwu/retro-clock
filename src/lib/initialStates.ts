@@ -34,6 +34,24 @@ const initialStates = {
       stlUrl: ["/hour_hand_bold_1.stl", "/minute_hand_bold_1.stl"],
     },
   ],
+  gifCarouselItems: [
+    {
+      label: "Rotate the clock by clicking and dragging with your mouse",
+      src: "/gifs/orbit.gif",
+    },
+    {
+      label: "Customize the colors using the color pickers",
+      src: "/gifs/color_picker.gif",
+    },
+    {
+      label: "Choose from various designs",
+      src: "/gifs/option_dialog.gif",
+    },
+    {
+      label: "Save and load your favorite designs as presets",
+      src: "/gifs/save_preset.gif",
+    },
+  ],
 };
 
 export default initialStates;
