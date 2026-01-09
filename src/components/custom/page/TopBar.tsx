@@ -1,3 +1,5 @@
+import { saveIsFirstVisitToLocalStorage } from "@/lib/api/presetsLocalStorage";
+import { useAppContext } from "@/lib/contexts/AppContext";
 import initialStates from "@/lib/initialStates";
 import {
   Dialog,
@@ -9,7 +11,7 @@ import {
   Carousel,
   IconButton,
 } from "@chakra-ui/react";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
@@ -37,10 +39,23 @@ const Logo = () => {
 };
 
 const Description = () => {
+  const { isFirstVisit, setIsFirstVisit } = useAppContext();
   const initialRef = useRef<HTMLAnchorElement | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(isFirstVisit);
+
+  const closeDialogHandler = () => {
+    setIsFirstVisit(false);
+    saveIsFirstVisitToLocalStorage(false);
+  };
 
   return (
-    <Dialog.Root size="lg" initialFocusEl={() => initialRef.current}>
+    <Dialog.Root
+      size="lg"
+      initialFocusEl={() => initialRef.current}
+      onExitComplete={closeDialogHandler}
+      open={dialogOpen}
+      onOpenChange={(e) => setDialogOpen(e.open)}
+    >
       {/* Trigger */}
       <Dialog.Trigger asChild>
         <Link

@@ -9,6 +9,7 @@ import initialStates from "../initialStates";
 import { parseColor, type Color } from "@chakra-ui/react";
 import {
   loadInitialPresetFromLocalStorage,
+  loadIsFirstVisitFromLocalStorage,
   loadPresetsFromLocalStorage,
   saveInitialPresetToLocalStorage,
 } from "../api/presetsLocalStorage";
@@ -16,6 +17,9 @@ import type { PresetType } from "@/components/custom/presets/PresetItem";
 import getDesignFromName from "../utils/getDesignFromName";
 
 interface AppContextType {
+  // First page visit
+  isFirstVisit: boolean;
+  setIsFirstVisit: React.Dispatch<React.SetStateAction<boolean>>;
   // Initial loaded preset
   initialPreset: PresetType | null;
   setInitialPreset: React.Dispatch<React.SetStateAction<PresetType | null>>;
@@ -49,6 +53,11 @@ const AppContext = createContext<AppContextType | null>(null);
 
 export function AppProvider({ children }: { children: ReactNode }) {
   // APP STATE
+  // First page visit
+  const [isFirstVisit, setIsFirstVisit] = useState<boolean>(
+    loadIsFirstVisitFromLocalStorage()
+  );
+
   // Initial loaded preset
   const [initialPreset, setInitialPreset] = useState<PresetType | null>(
     loadInitialPresetFromLocalStorage()
@@ -124,6 +133,8 @@ export function AppProvider({ children }: { children: ReactNode }) {
   ]);
 
   const value: AppContextType = {
+    isFirstVisit,
+    setIsFirstVisit,
     initialPreset,
     setInitialPreset,
     savedPresets,
