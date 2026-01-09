@@ -1,8 +1,9 @@
 import { useAppContext } from "@/lib/contexts/AppContext";
 import initialStates from "@/lib/initialStates";
 import getRandomColor from "@/lib/utils/getRandomColor";
-import { Flex, parseColor, Text } from "@chakra-ui/react";
+import { Badge, Flex, parseColor, Text } from "@chakra-ui/react";
 import { LuPaintbrush, LuRuler } from "react-icons/lu";
+import { PiRobot } from "react-icons/pi";
 
 export default function RandomizeStack() {
   const {
@@ -55,6 +56,7 @@ export default function RandomizeStack() {
       <RandomizeColorsAndDesigns
         randomizeColorsAndDesigns={randomizeColorsAndDesigns}
       />
+      <GenerateAiStyle generateAiDesigns={() => {}} />
     </Flex>
   );
 }
@@ -102,6 +104,36 @@ const RandomizeColorsAndDesigns = ({
   );
 };
 
+const GenerateAiStyle = ({
+  generateAiDesigns,
+}: {
+  generateAiDesigns: () => void;
+}) => {
+  return (
+    <Flex {...randomBoxStyle} onClick={generateAiDesigns}>
+      <Flex
+        direction="row"
+        justify="space-between"
+        align="center"
+        width="90%"
+        position="absolute"
+        top="5px"
+      >
+        <Badge
+          colorPalette="black"
+          variant="solid"
+          size="xs"
+          maxHeight="max-content"
+        >
+          Coming Soon
+        </Badge>
+      </Flex>
+      <PiRobot size={20} />
+      <Text fontSize="xs">Generate AI</Text>
+    </Flex>
+  );
+};
+
 const randomBoxStyle = {
   flexShrink: 0,
   direction: "column",
@@ -113,5 +145,6 @@ const randomBoxStyle = {
   border: "1px solid #d4d4d4ff",
   borderRadius: "10px",
   cursor: "pointer",
+  position: "relative",
   _hover: { scale: 1.05, boxShadow: "md" },
 };
