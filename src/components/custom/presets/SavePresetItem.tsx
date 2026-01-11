@@ -69,7 +69,7 @@ export default function SavePresetItem() {
           align="center"
           justify="center"
           width="150px"
-          height="90px"
+          height="95px"
           border="1px solid #d4d4d4ff"
           borderRadius="10px"
           cursor="pointer"
