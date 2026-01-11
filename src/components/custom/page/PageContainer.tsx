@@ -7,7 +7,7 @@ import BottomBar from "./BottomBar";
 
 export default function PageContainer() {
   return (
-    <Container direction="column" height="100%" width="100%" maxWidth="1300px">
+    <Container direction="column" height="100%" width="100%" fluid>
       {/* Top Bar */}
       <Flex height="100px" width="100%" align="center">
         <TopBar />
@@ -20,15 +20,15 @@ export default function PageContainer() {
         justify="space-between"
         px="20px"
       >
-        <Flex width="20%" height="100%" pr="20px">
+        <Flex {...sideBodyResponsiveStyle} pr="20px">
           <BodyLeft />
         </Flex>
 
-        <Flex width="50%" height="100%">
+        <Flex width={{ base: "100%", lg: "60%" }} height="100%">
           <BodyCenter />
         </Flex>
 
-        <Flex width="20%" height="100%" pl="20px">
+        <Flex pl="20px" {...sideBodyResponsiveStyle}>
           <BodyRight />
         </Flex>
       </Flex>
@@ -40,3 +40,9 @@ export default function PageContainer() {
     </Container>
   );
 }
+
+const sideBodyResponsiveStyle = {
+  height: "100%",
+  width: { base: "25%", "2xl": "15%" },
+  hideBelow: "lg",
+};
