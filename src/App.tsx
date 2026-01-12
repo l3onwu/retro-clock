@@ -3,7 +3,7 @@ import PageContainer from "./components/custom/page/PageContainer";
 
 function App() {
   return (
-    <Box height="100vh" width="100vw">
+    <Box height={["100vh", "100dvh"]} width="100vw">
       <PageContainer />
     </Box>
   );

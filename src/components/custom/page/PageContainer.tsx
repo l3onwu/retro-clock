@@ -16,7 +16,7 @@ export default function PageContainer() {
       {/* Body */}
       <Flex
         width="100%"
-        height="calc(100vh - 300px)"
+        height="calc(100% - 300px)"
         justify="space-between"
         px="20px"
       >
