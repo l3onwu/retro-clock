@@ -11,10 +11,10 @@ export default function ClockModelView() {
   const responsiveBoundsMargin = useBreakpointValue([
     1.1, // base
     1.1, // sm
-    0.85, // md
-    0.85, // lg
-    0.85, // xl
-    0.85, // 2xl
+    1.1, // md
+    1.1, // lg
+    1, // xl
+    1, // 2xl
   ]);
   const [orbitReady, setOrbitReady] = useState(false);
   // Timer to delay orbit controls until initial fit is done
