@@ -12,9 +12,9 @@ export default function ClockModelView() {
     1.1, // base
     1.1, // sm
     1.1, // md
-    1.1, // lg
-    1, // xl
-    1, // 2xl
+    1.0, // lg
+    0.92, // xl
+    0.92, // 2xl
   ]);
   const [orbitReady, setOrbitReady] = useState(false);
   // Timer to delay orbit controls until initial fit is done
