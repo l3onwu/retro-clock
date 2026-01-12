@@ -136,7 +136,7 @@ export default function PageDescription() {
                   href="https://github.com/l3onwu/retro-clock"
                   target="_blank"
                   rel="noopener noreferrer"
-                  _hover={{ color: "purple.600" }}
+                  _hover={{ transform: "scale(1.1)" }}
                 >
                   <FaGithub style={{ display: "inline", marginRight: "4px" }} />
                 </Link>
@@ -144,10 +144,12 @@ export default function PageDescription() {
                   href="https://makerworld.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  _hover={{ color: "purple.600" }}
+                  _hover={{ transform: "scale(1.1)" }}
                 >
-                  <BsBadge3dFill
-                    style={{ display: "inline", marginRight: "4px" }}
+                  <Image
+                    src="/images/makerworld-lq.jpg"
+                    alt="MakerWorld"
+                    height="24px"
                   />
                 </Link>
               </Flex>
