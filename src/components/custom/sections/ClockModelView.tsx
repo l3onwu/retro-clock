@@ -1,13 +1,30 @@
 import { useAppContext } from "@/lib/contexts/AppContext";
 import { useR3F } from "@/lib/contexts/R3FContext";
 import useClockModelView from "@/lib/hooks/useClockModelView";
-import { Box } from "@chakra-ui/react";
-import { OrbitControls } from "@react-three/drei";
+import { Box, useBreakpointValue } from "@chakra-ui/react";
+import { Bounds, OrbitControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function ClockModelView() {
   const r3f = useR3F();
+  const responsiveBoundsMargin = useBreakpointValue([
+    1.1, // base
+    1.1, // sm
+    0.85, // md
+    0.85, // lg
+    0.85, // xl
+    0.85, // 2xl
+  ]);
+  const [orbitReady, setOrbitReady] = useState(false);
+  // Timer to delay orbit controls until initial fit is done
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setOrbitReady(true);
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
+
   const {
     modelClockBody,
     modelClockBase,
@@ -77,43 +94,52 @@ export default function ClockModelView() {
         }}
       >
         <CameraSetup />
-        <OrbitControls />
+        <OrbitControls makeDefault enabled={orbitReady} />
         <ambientLight intensity={0.5} />
         <directionalLight color="white" position={[0, 0, 5]} />
         <directionalLight color="white" position={[0, -5, 0]} intensity={0.2} />
-        {/* Clock body */}
-        <mesh geometry={modelClockBody} scale={0.01} position={[0, 0, 0]}>
-          <meshStandardMaterial color={bodyColor.toString("hsl")} />
-        </mesh>
-        {/* Clock base */}
-        <mesh
-          geometry={modelClockBase}
-          scale={0.01}
-          position={[0, -0.02, -0.4]}
+
+        <Bounds
+          fit
+          clip
+          observe
+          margin={responsiveBoundsMargin}
+          maxDuration={0.7}
         >
-          <meshStandardMaterial color={bodyColor.toString("hsl")} />
-        </mesh>
-        {/* Dial hours */}
-        <mesh geometry={modelDial} scale={0.01} position={[0, -0.05, 0.04]}>
-          <meshBasicMaterial color={dialColor.toString("hsl")} />
-        </mesh>
-        {/* Hands hours */}
-        <mesh
-          geometry={modelHandsHours}
-          scale={0.01}
-          position={[0.07, -0.06, 0.04]}
-        >
-          <meshStandardMaterial color={handsColor.toString("hsl")} />
-        </mesh>
-        {/* Hands minutes */}
-        <mesh
-          geometry={modelHandsMinutes}
-          scale={0.01}
-          position={[-0.08, -0.1, 0.15]}
-          rotation={[0, 4, 0]}
-        >
-          <meshStandardMaterial color={handsColor.toString("hsl")} />
-        </mesh>
+          {/* Clock body */}
+          <mesh geometry={modelClockBody} scale={0.01} position={[0, 0, 0]}>
+            <meshStandardMaterial color={bodyColor.toString("hsl")} />
+          </mesh>
+          {/* Clock base */}
+          <mesh
+            geometry={modelClockBase}
+            scale={0.01}
+            position={[0, -0.02, -0.4]}
+          >
+            <meshStandardMaterial color={bodyColor.toString("hsl")} />
+          </mesh>
+          {/* Dial hours */}
+          <mesh geometry={modelDial} scale={0.01} position={[0, -0.05, 0.04]}>
+            <meshBasicMaterial color={dialColor.toString("hsl")} />
+          </mesh>
+          {/* Hands hours */}
+          <mesh
+            geometry={modelHandsHours}
+            scale={0.01}
+            position={[0.07, -0.06, 0.04]}
+          >
+            <meshStandardMaterial color={handsColor.toString("hsl")} />
+          </mesh>
+          {/* Hands minutes */}
+          <mesh
+            geometry={modelHandsMinutes}
+            scale={0.01}
+            position={[-0.08, -0.1, 0.15]}
+            rotation={[0, 4, 0]}
+          >
+            <meshStandardMaterial color={handsColor.toString("hsl")} />
+          </mesh>
+        </Bounds>
       </Canvas>
     </Box>
   );
