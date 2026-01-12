@@ -61,10 +61,7 @@ export default function PageDescription() {
               textAlign="center"
               width="100%"
               mb="-10px"
-              fontFamily="ranchers"
-              textTransform="uppercase"
-              fontWeight="400"
-              fontSize="2xl"
+              textStyle="coolSubHeading"
             >
               Welcome!
             </Dialog.Title>
