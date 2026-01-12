@@ -1,3 +1,4 @@
+import constants from "@/lib/constants";
 import { useAppContext } from "@/lib/contexts/AppContext";
 import { useR3F } from "@/lib/contexts/R3FContext";
 import { Flex, Button, Text } from "@chakra-ui/react";
@@ -31,8 +32,8 @@ export default function MoreControlsSection() {
   }
 
   async function downloadSelectedParts() {
-    await downloadSTL("/public/body_1.stl", "clock_body.stl");
-    await downloadSTL("/public/base_1.stl", "clock_base.stl");
+    await downloadSTL(`${constants.MODELS_PATH}body_1.stl`, "clock_body.stl");
+    await downloadSTL(`${constants.MODELS_PATH}base_1.stl`, "clock_base.stl");
     await downloadSTL(dialDesignImage.stlUrl[0], "clock_dial.stl");
     await downloadSTL(handsDesignImage.stlUrl[0], "clock_hands_hours.stl");
     await downloadSTL(handsDesignImage.stlUrl[1], "clock_hands_minutes.stl");
