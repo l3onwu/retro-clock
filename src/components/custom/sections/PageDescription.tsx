@@ -12,7 +12,7 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { useRef, useState } from "react";
-import { BsBadge3dFill, BsFillInfoCircleFill } from "react-icons/bs";
+import { BsFillInfoCircleFill } from "react-icons/bs";
 import { FaGithub } from "react-icons/fa";
 import { LuChevronLeft, LuChevronRight } from "react-icons/lu";
 
