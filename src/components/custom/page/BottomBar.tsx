@@ -2,11 +2,12 @@ import { Flex, Text } from "@chakra-ui/react";
 import { useState } from "react";
 import PresetStack from "../presets/PresetStack";
 import RandomizeStack from "../presets/RandomizeStack";
+import AIStack from "../presets/AIStack";
 
-type MenuOptions = "Presets" | "Randomize";
+export type MenuOption = "Presets" | "Randomize" | "AI";
 
 export default function BottomBar() {
-  const [menuOption, setMenuOption] = useState<MenuOptions>("Presets");
+  const [menuOption, setMenuOption] = useState<MenuOption>("Presets");
 
   return (
     <Flex
@@ -19,7 +20,10 @@ export default function BottomBar() {
       <MenuOptions setMenuOption={setMenuOption} menuOption={menuOption} />
 
       {menuOption === "Presets" && <PresetStack />}
-      {menuOption === "Randomize" && <RandomizeStack />}
+      {menuOption === "Randomize" && (
+        <RandomizeStack setMenuOption={setMenuOption} />
+      )}
+      {menuOption === "AI" && <AIStack setMenuOption={setMenuOption} />}
     </Flex>
   );
 }
@@ -28,8 +32,8 @@ const MenuOptions = ({
   setMenuOption,
   menuOption,
 }: {
-  setMenuOption: React.Dispatch<React.SetStateAction<MenuOptions>>;
-  menuOption: MenuOptions;
+  setMenuOption: React.Dispatch<React.SetStateAction<MenuOption>>;
+  menuOption: MenuOption;
 }) => {
   return (
     <Flex direction="row" mb="20px">
@@ -42,7 +46,11 @@ const MenuOptions = ({
       </Text>
       <Text
         {...menuOptionStyle}
-        color={menuOption === "Randomize" ? "black" : "gray.500"}
+        color={
+          menuOption === "Randomize" || menuOption === "AI"
+            ? "black"
+            : "gray.500"
+        }
         onClick={() => setMenuOption("Randomize")}
       >
         Randomize

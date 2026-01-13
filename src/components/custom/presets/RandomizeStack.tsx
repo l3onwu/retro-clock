@@ -4,8 +4,13 @@ import getRandomColor from "@/lib/utils/getRandomColor";
 import { Badge, Flex, parseColor, Text } from "@chakra-ui/react";
 import { LuPaintbrush, LuRuler } from "react-icons/lu";
 import { PiRobot } from "react-icons/pi";
+import type { MenuOption } from "../page/BottomBar";
 
-export default function RandomizeStack() {
+export default function RandomizeStack({
+  setMenuOption,
+}: {
+  setMenuOption: React.Dispatch<React.SetStateAction<MenuOption>>;
+}) {
   const {
     setBodyColor,
     setDialColor,
@@ -56,7 +61,11 @@ export default function RandomizeStack() {
       <RandomizeColorsAndDesigns
         randomizeColorsAndDesigns={randomizeColorsAndDesigns}
       />
-      <GenerateAiStyle generateAiDesigns={() => {}} />
+      <GenerateAiStyle
+        generateAiDesigns={() => {
+          setMenuOption("AI");
+        }}
+      />
     </Flex>
   );
 }
