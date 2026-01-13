@@ -41,45 +41,40 @@ export default function AIStack({
       gap="10px"
       p="5px"
     >
+      {/* Enter prompt */}
       <Flex
         flexShrink={0}
-        direction="column"
-        align="center"
-        justify="center"
-        gap="1"
+        gap={5}
         width="400px"
         height="90px"
         border="1px solid #d4d4d4ff"
         borderRadius="10px"
         cursor="pointer"
         position="relative"
+        direction="row"
+        justify="space-between"
+        align="center"
+        px="25px"
       >
-        <Flex
-          direction="row"
-          justify="space-between"
-          align="center"
-          width="90%"
-          px="5px"
-          gap="20px"
+        <Input
+          variant="flushed"
+          placeholder="Enter design prompt..."
+          size="sm"
+          value={userPrompt}
+          onChange={(e) => setUserPrompt(e.target.value)}
+        />
+        <Button
+          size="md"
+          variant="subtle"
+          onClick={() => generateAIThemeHandler(userPrompt)}
+          loading={loadingResponse}
         >
-          <Input
-            variant="flushed"
-            placeholder="Enter design prompt..."
-            size="sm"
-            value={userPrompt}
-            onChange={(e) => setUserPrompt(e.target.value)}
-          />
-          <Button
-            variant="subtle"
-            onClick={() => generateAIThemeHandler(userPrompt)}
-            loading={loadingResponse}
-          >
-            <RiAiGenerate2 />
-            Generate
-          </Button>
-        </Flex>
+          <RiAiGenerate2 />
+          Generate
+        </Button>
       </Flex>
 
+      {/* Back button */}
       <Flex
         direction="row"
         p="10px"
