@@ -32,7 +32,7 @@ export default function AIStack({
   return (
     <Flex
       direction="row"
-      justify="center"
+      justify={{ base: "flex-start", md: "center" }}
       align="center"
       width="100%"
       height="100px"
@@ -45,7 +45,7 @@ export default function AIStack({
       <Flex
         flexShrink={0}
         gap={5}
-        width="400px"
+        width={{ base: "300px", md: "400px" }}
         height="90px"
         border="1px solid #d4d4d4ff"
         borderRadius="10px"

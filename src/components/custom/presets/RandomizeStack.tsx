@@ -48,7 +48,7 @@ export default function RandomizeStack({
   return (
     <Flex
       direction="row"
-      justify="center"
+      justify={{ base: "flex-start", md: "center" }}
       width="100%"
       height="100px"
       overflowX="auto"
