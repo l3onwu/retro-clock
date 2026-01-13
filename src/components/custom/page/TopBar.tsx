@@ -18,11 +18,7 @@ const Logo = () => {
         <Text fontSize="2xs" color="gray.800">
           As seen on
         </Text>
-        <Image
-          src="/images/makerworld-lq.jpg"
-          height="20px"
-          borderRadius="10px"
-        />
+        <Image src="/images/makerworld-lq.jpg" height="20px" />
       </Flex>
     </Flex>
   );
