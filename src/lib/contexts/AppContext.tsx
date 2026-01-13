@@ -26,6 +26,8 @@ interface AppContextType {
   // Saved presets
   savedPresets: PresetType[];
   setSavedPresets: React.Dispatch<React.SetStateAction<PresetType[]>>;
+  // Helper function to apply a clock preset
+  applyClockPreset: (preset: PresetType) => void;
   // Body options
   bodyColor: Color;
   setBodyColor: React.Dispatch<React.SetStateAction<Color>>;
@@ -132,6 +134,20 @@ export function AppProvider({ children }: { children: ReactNode }) {
     handsDesignImage,
   ]);
 
+  // Helper function to apply a clock preset
+  const applyClockPreset = (preset: PresetType) => {
+    // Set configurations
+    setBodyColor(parseColor(preset.bodyColor));
+    setDialColor(parseColor(preset.dialColor));
+    setHandsColor(parseColor(preset.handsColor));
+    setDialDesignImage(
+      getDesignFromName(preset.dialDesign, initialStates.dialDesignsImages)
+    );
+    setHandsDesignImage(
+      getDesignFromName(preset.handsDesign, initialStates.handsDesignsImages)
+    );
+  };
+
   const value: AppContextType = {
     isFirstVisit,
     setIsFirstVisit,
@@ -149,6 +165,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
     setDialDesignImage,
     handsDesignImage,
     setHandsDesignImage,
+    applyClockPreset,
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

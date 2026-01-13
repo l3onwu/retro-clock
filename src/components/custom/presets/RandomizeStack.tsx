@@ -134,7 +134,7 @@ const GenerateAiStyle = ({
           size="xs"
           maxHeight="max-content"
         >
-          Coming Soon
+          New
         </Badge>
       </Flex>
       <PiRobot size={20} />
