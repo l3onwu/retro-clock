@@ -13,7 +13,7 @@ export const generateAITheme = async (prompt: string): Promise<PresetType> => {
     contents: `Create a color palette and design for a clock, with this prompt: "${prompt}"`,
     config: {
       systemInstruction:
-        "You are a color theory and design expert. Generate a cohesive 3-color palette (Clock body, clock dial, clock hands) in JSON format. After that, choose appropriate models for the design. For the dial, choose between 'Classic' and 'Smile'. For the hands, choose between 'Chopsticks' and 'Bold'. Respond only in JSON format as specified.",
+        "You are a color theory and design expert. Generate a cohesive 3-color palette (Clock body, clock dial, clock hands) in JSON format. Colors should be in HSL format. After that, choose appropriate models for the design. For the dial, choose between 'Classic' and 'Smile'. For the hands, choose between 'Chopsticks' and 'Bold'. Respond only in JSON format as specified.",
       responseMimeType: "application/json",
       responseSchema: {
         type: Type.OBJECT,
