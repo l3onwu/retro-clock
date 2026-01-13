@@ -43,6 +43,7 @@ export default function PageContainer() {
 
 const sideBodyResponsiveStyle = {
   height: "100%",
+  pt: "10px",
   width: { base: "25%", "2xl": "15%" },
   hideBelow: "lg",
 };
