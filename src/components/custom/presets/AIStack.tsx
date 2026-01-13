@@ -41,7 +41,19 @@ export default function AIStack({
       gap="10px"
       p="5px"
     >
-      <Flex {...randomBoxStyle} onClick={() => {}}>
+      <Flex
+        flexShrink={0}
+        direction="column"
+        align="center"
+        justify="center"
+        gap="1"
+        width="400px"
+        height="90px"
+        border="1px solid #d4d4d4ff"
+        borderRadius="10px"
+        cursor="pointer"
+        position="relative"
+      >
         <Flex
           direction="row"
           justify="space-between"
@@ -90,18 +102,3 @@ export default function AIStack({
     </Flex>
   );
 }
-
-const randomBoxStyle = {
-  flexShrink: 0,
-  direction: "column",
-  align: "center",
-  justify: "center",
-  gap: 1,
-  width: "400px",
-  height: "90px",
-  border: "1px solid #d4d4d4ff",
-  borderRadius: "10px",
-  cursor: "pointer",
-  position: "relative",
-  backgroundColor: "grey.200",
-};
