@@ -88,9 +88,8 @@ export default function PageDescription() {
                         <Flex direction="column">
                           <Image
                             borderRadius={"20px"}
-                            fit="cover"
-                            // Temp style before updated gifs
                             height="315px"
+                            fit="cover"
                             objectPosition="bottom"
                             width="100%"
                             src={initialStates.gifCarouselItems[index].src}

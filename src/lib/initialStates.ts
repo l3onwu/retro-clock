@@ -55,8 +55,8 @@ const initialStates = {
       src: `${constants.GIFS_PATH}option_dialog.gif`,
     },
     {
-      label: "Save and load your favorite designs as presets",
-      src: `${constants.GIFS_PATH}save_preset.gif`,
+      label: "Screenshot your designs and download models",
+      src: `${constants.GIFS_PATH}download.gif`,
     },
   ],
 };
