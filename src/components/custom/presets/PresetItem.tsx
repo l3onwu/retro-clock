@@ -1,7 +1,5 @@
-import { Flex, parseColor, Text, Badge, IconButton } from "@chakra-ui/react";
+import { Flex, Text, Badge, IconButton } from "@chakra-ui/react";
 import { useAppContext } from "@/lib/contexts/AppContext";
-import initialStates from "@/lib/initialStates";
-import getDesignFromName from "@/lib/utils/getDesignFromName";
 import { RxCross2 } from "react-icons/rx";
 import { deletePresetFromLocalStorage } from "@/lib/api/presetsLocalStorage";
 
@@ -23,28 +21,7 @@ export default function PresetItem({
   index: number;
   user?: boolean;
 }) {
-  const {
-    setBodyColor,
-    setDialColor,
-    setHandsColor,
-    setDialDesignImage,
-    setHandsDesignImage,
-    savedPresets,
-    setSavedPresets,
-  } = useAppContext();
-
-  const applyClockPreset = (preset: PresetType) => {
-    // Set configurations
-    setBodyColor(parseColor(preset.bodyColor));
-    setDialColor(parseColor(preset.dialColor));
-    setHandsColor(parseColor(preset.handsColor));
-    setDialDesignImage(
-      getDesignFromName(preset.dialDesign, initialStates.dialDesignsImages)
-    );
-    setHandsDesignImage(
-      getDesignFromName(preset.handsDesign, initialStates.handsDesignsImages)
-    );
-  };
+  const { applyClockPreset, savedPresets, setSavedPresets } = useAppContext();
 
   const deletePreset = (presetName: string, index: number) => {
     deletePresetFromLocalStorage(presetName);
