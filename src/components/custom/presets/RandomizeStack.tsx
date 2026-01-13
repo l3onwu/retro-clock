@@ -50,7 +50,7 @@ export default function RandomizeStack({
       direction="row"
       justify={{ base: "flex-start", md: "center" }}
       width="100%"
-      height="100px"
+      height="105px"
       overflowX="auto"
       overflowY="hidden"
       gap="10px"
@@ -150,7 +150,7 @@ const randomBoxStyle = {
   justify: "center",
   gap: 1,
   width: "150px",
-  height: "90px",
+  height: "95px",
   border: "1px solid #d4d4d4ff",
   borderRadius: "10px",
   cursor: "pointer",
