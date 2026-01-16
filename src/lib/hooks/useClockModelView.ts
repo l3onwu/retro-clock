@@ -19,6 +19,10 @@ export default function useClockModelView() {
     STLLoader,
     `${constants.MODELS_PATH}dial_smile_1.stl`
   );
+  const modelDial12 = useLoader(
+    STLLoader,
+    `${constants.MODELS_PATH}dial_12_1.stl`
+  );
   const modelHandsHoursChopsticks = useLoader(
     STLLoader,
     `${constants.MODELS_PATH}hour_hand_chopsticks_1.stl`
@@ -41,6 +45,7 @@ export default function useClockModelView() {
   modelClockBase.center();
   modelDialHours.center();
   modelDialSmile.center();
+  modelDial12.center();
   modelHandsHoursChopsticks.center();
   modelHandsMinutesChopsticks.center();
   modelHandsHoursBold.center();
@@ -51,6 +56,7 @@ export default function useClockModelView() {
     modelClockBase,
     modelDialHours,
     modelDialSmile,
+    modelDial12,
     modelHandsHoursChopsticks,
     modelHandsMinutesChopsticks,
     modelHandsHoursBold,

@@ -30,6 +30,7 @@ export default function ClockModelView() {
     modelClockBase,
     modelDialHours,
     modelDialSmile,
+    modelDial12,
     modelHandsHoursChopsticks,
     modelHandsHoursBold,
     modelHandsMinutesChopsticks,
@@ -50,6 +51,8 @@ export default function ClockModelView() {
         return modelDialHours;
       case "Smile":
         return modelDialSmile;
+      case "12 Marker":
+        return modelDial12;
       default:
         return modelDialHours;
     }

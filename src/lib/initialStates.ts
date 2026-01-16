@@ -18,6 +18,13 @@ const initialStates = {
       description: "A smiley face design to bring joy to your timekeeping.",
       stlUrl: [`${constants.MODELS_PATH}dial_smile_1.stl`],
     },
+    {
+      id: 3,
+      name: "12 Marker",
+      image: `${constants.IMAGES_PATH}image_dial_12_marker_1.png`,
+      description: "Numeral at the 12 o'clock position for a clean look.",
+      stlUrl: [`${constants.MODELS_PATH}dial_12_1.stl`],
+    },
   ],
   handsDesignsImages: [
     {
